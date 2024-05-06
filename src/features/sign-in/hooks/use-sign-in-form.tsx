@@ -1,3 +1,5 @@
+import { useSignInMutation } from "@/entities/user/api/endpoints"
+import { mutationHandlerWithNotification } from "@/shared/utils/mutation-handler-with-notification"
 import { useForm, zodResolver } from "@mantine/form"
 import { useCallback } from "react"
 import { z } from "zod"
@@ -33,10 +35,20 @@ export const useSignInForm = () => {
     initialValues,
     validate,
   })
+  const [signIn, { isLoading }] = useSignInMutation()
 
-  const handleSubmit = useCallback((data: typeof values) => {
-    console.log({ data })
-  }, [])
+  const handleSubmit = useCallback(
+    async (data: typeof values) => {
+      try {
+        await mutationHandlerWithNotification({
+          promise: () => signIn(data).unwrap(),
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    [signIn]
+  )
 
-  return { values, getInputProps, onSubmit, handleSubmit, form }
+  return { values, getInputProps, onSubmit, handleSubmit, form, isLoading }
 }
