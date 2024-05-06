@@ -31,29 +31,17 @@ export const showAppNotification = ({
         id: args.id,
         title,
         message,
+        color: getNotificationColorByVariant(variant),
         autoClose,
         ...args,
-        styles: () => ({
-          root: {
-            "&::before": {
-              backgroundColor: getNotificationColorByVariant(variant),
-            },
-          },
-        }),
       })
     default:
       return notifications.show({
         title,
         message,
+        color: getNotificationColorByVariant(variant),
         autoClose,
         ...args,
-        styles: (theme) => ({
-          root: {
-            "&::before": {
-              backgroundColor: getNotificationColorByVariant(variant),
-            },
-          },
-        }),
       })
   }
 }

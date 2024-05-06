@@ -1,6 +1,9 @@
-import { useForm, zodResolver } from "@mantine/form"
 import { useCallback } from "react"
+import { useForm, zodResolver } from "@mantine/form"
 import { z } from "zod"
+
+import { useSignUpMutation } from "@/entities/user/api/endpoints"
+import { mutationHandlerWithNotification } from "@/shared/utils/mutation-handler-with-notification"
 
 const initialValues = {
   login: "",
@@ -43,13 +46,20 @@ export const useSignUpForm = () => {
     initialValues,
     validate,
   })
+  const [signUp, { isLoading }] = useSignUpMutation()
 
   const handleSubmit = useCallback(
-    ({ confirmPassword, ...data }: typeof values) => {
-      console.log({ data })
+    async ({ confirmPassword, ...data }: typeof values) => {
+      try {
+        await mutationHandlerWithNotification({
+          promise: () => signUp(data).unwrap(),
+        })
+      } catch (e) {
+        console.log(e)
+      }
     },
-    []
+    [signUp]
   )
 
-  return { values, getInputProps, onSubmit, handleSubmit, form }
+  return { values, getInputProps, onSubmit, handleSubmit, form, isLoading }
 }

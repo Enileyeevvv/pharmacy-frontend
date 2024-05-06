@@ -7,7 +7,8 @@ import { Form } from "@/shared/ui/form"
 import { useSignUpForm } from "../hooks/use-sign-up-form"
 
 export const SignUpForm = () => {
-  const { getInputProps, handleSubmit, onSubmit } = useSignUpForm()
+  const { getInputProps, handleSubmit, onSubmit, isLoading } =
+    useSignUpForm()
 
   return (
     <Form onSubmit={onSubmit(handleSubmit)}>
@@ -29,6 +30,7 @@ export const SignUpForm = () => {
       <Button
         mt={24}
         type="submit"
+        loading={isLoading}
       >
         Зарегистрироваться
       </Button>
