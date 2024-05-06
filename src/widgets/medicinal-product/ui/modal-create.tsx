@@ -26,14 +26,13 @@ export const CreateMedicinalProductModal = ({
       name: isNotEmpty("Поле обязательно"),
       description: isNotEmpty("Поле обязательно"),
       quantity: (value, values) =>
-        value > values.maxQuantity
+        value < values.maxQuantity
           ? "Количество не должно превывать максимальное"
           : null,
       maxQuantity: (value) =>
         parseInt(String(value)) < 30
           ? "Поле должно быть не меньше 30"
           : null,
-      // maxQuantity: isInRange({ min: 30 }, "Поле должно быть не меньше 30"),
     },
   })
   const [create, { isLoading }] = useCreateMedicinalProductMutation()
