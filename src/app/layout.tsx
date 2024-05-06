@@ -1,7 +1,6 @@
 "use client"
 
 import { PropsWithChildren } from "react"
-import Head from "next/head"
 import { ColorSchemeScript } from "@mantine/core"
 
 import { ThemeProvider } from "./ui/provider-theme"
@@ -13,9 +12,9 @@ import "./styles/globals.css"
 const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <html lang="ru">
-      <Head>
+      <head>
         <ColorSchemeScript />
-      </Head>
+      </head>
       <body>
         <StoreProvider>
           <ThemeProvider>
