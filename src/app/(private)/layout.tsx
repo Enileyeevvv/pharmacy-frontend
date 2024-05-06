@@ -5,6 +5,7 @@ import { AppShell, Burger, Button, Flex } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 import Link from "next/link"
 import { URLs } from "@/shared/config/urls"
+import Image from "next/image"
 
 const privateLinks = [
   {
@@ -23,7 +24,7 @@ const PublicLayout = ({ children }: PropsWithChildren) => {
   return (
     <AppShell
       layout="alt"
-      header={{ height: 60 }}
+      header={{ height: 80 }}
       navbar={{
         width: 300,
         breakpoint: "sm",
@@ -38,24 +39,34 @@ const PublicLayout = ({ children }: PropsWithChildren) => {
           hiddenFrom="sm"
           size="sm"
         />
-        {/* <div>Logo</div> */}
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
         <Flex
           direction="column"
-          gap={16}
+          gap={32}
         >
-          {privateLinks.map((link) => (
-            <Button
-              variant="light"
-              component={Link}
-              href={link.href}
-              key={link.href}
-            >
-              {link.label}
-            </Button>
-          ))}
+          <Image
+            src="/images/logo.webp"
+            alt="logo"
+            width={128}
+            height={32}
+          />
+          <Flex
+            direction="column"
+            gap={16}
+          >
+            {privateLinks.map((link) => (
+              <Button
+                variant="light"
+                component={Link}
+                href={link.href}
+                key={link.href}
+              >
+                {link.label}
+              </Button>
+            ))}
+          </Flex>
         </Flex>
       </AppShell.Navbar>
 
