@@ -19,7 +19,10 @@ export const QuantityPercentBadge: FC<QuantityPercentBadgeProps> = ({
   const percent = (quantity / maxQuantity) * 100
 
   return (
-    <Badge color={colorByPersent(percent)}>
+    <Badge
+      color={colorByPersent(percent)}
+      variant="light"
+    >
       Осталось: {`${quantity} из ${maxQuantity}`}
     </Badge>
   )

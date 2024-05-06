@@ -1,6 +1,7 @@
-import { CreateMedicinalProductModal } from "@/widgets/medicinal-product/ui/modal-create"
-import { modals, ModalsProvider } from "@mantine/modals"
 import { PropsWithChildren } from "react"
+import { ModalsProvider } from "@mantine/modals"
+
+import { modals } from "../config/modals"
 
 export const ModalProvider = ({ children }: PropsWithChildren) => {
   return <ModalsProvider modals={modals}>{children}</ModalsProvider>
