@@ -1,15 +1,11 @@
-import { Badge } from "@mantine/core"
 import { FC } from "react"
+import { Badge } from "@mantine/core"
+
+import { colorByPersent } from "../utils/get-color-by-persent"
 
 interface QuantityPercentBadgeProps {
   quantity: number
   maxQuantity: number
-}
-
-const colorByPersent = (persent: number) => {
-  if (persent <= 25) return "red"
-  if (persent <= 65) return "yellow"
-  return "green"
 }
 
 export const QuantityPercentBadge: FC<QuantityPercentBadgeProps> = ({
