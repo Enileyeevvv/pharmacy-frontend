@@ -6,7 +6,7 @@ import {
   Textarea,
   TextInput,
 } from "@mantine/core"
-import { isInRange, isNotEmpty, useForm } from "@mantine/form"
+import { isNotEmpty, useForm } from "@mantine/form"
 import { closeModal, ContextModalProps } from "@mantine/modals"
 import { NumericFormat } from "react-number-format"
 
@@ -19,15 +19,15 @@ export const CreateMedicinalProductModal = ({
     initialValues: {
       name: "",
       description: "",
-      quantity: 0,
-      maxQuantity: 0,
+      quantity: "0",
+      maxQuantity: "0",
     },
     validate: {
       name: isNotEmpty("Поле обязательно"),
       description: isNotEmpty("Поле обязательно"),
       quantity: (value, values) =>
-        value < values.maxQuantity
-          ? "Количество не должно превывать максимальное"
+        parseInt(value) > parseInt(values.maxQuantity)
+          ? "Количество не должно превышать максимальное"
           : null,
       maxQuantity: (value) =>
         parseInt(String(value)) < 30
@@ -45,8 +45,6 @@ export const CreateMedicinalProductModal = ({
     }).unwrap()
     closeModal(id)
   }
-
-  console.log({ values })
 
   return (
     <form onSubmit={onSubmit(handleSubmit)}>

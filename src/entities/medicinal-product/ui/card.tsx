@@ -1,6 +1,7 @@
 import { Card, Group, Badge, Button, Text, Flex } from "@mantine/core"
 import { FC } from "react"
 import { MedicinalProduct } from "../types/medicinal-product"
+import { QuantityPercentBadge } from "./badge-quantity-percent"
 
 interface MedicinalProductCardProps {
   product: MedicinalProduct
@@ -25,9 +26,10 @@ export const MedicinalProductCard: FC<MedicinalProductCardProps> = ({
       >
         <Group justify="space-between">
           <Text fw={500}>{product.name}</Text>
-          <Badge color="pink">
-            Осталось: {`${product.quantity} из ${product.maxQuantity}`}
-          </Badge>
+          <QuantityPercentBadge
+            quantity={product.quantity}
+            maxQuantity={product.maxQuantity}
+          />
         </Group>
 
         <Text
