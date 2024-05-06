@@ -1,3 +1,5 @@
+import { SignUpForm } from "@/features/sign-up/ui/form"
+
 export const SignUpPage = () => {
-  return <>Sign Up</>
+  return <SignUpForm />
 }

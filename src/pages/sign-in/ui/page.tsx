@@ -1,3 +1,5 @@
+import { SignInForm } from "@/features/sign-in/ui/form"
+
 export const SignInPage = () => {
-  return <>Sign In</>
+  return <SignInForm />
 }
