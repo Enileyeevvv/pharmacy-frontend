@@ -1,14 +1,23 @@
-import { FC } from "react"
-import Link from "next/link"
+import { FC, useCallback } from "react"
 import Image from "next/image"
 import { Flex, Button } from "@mantine/core"
 import { LinkType } from "@/shared/types/link"
+import { SidebarLink } from "./sidebar-link"
+import { usePathname } from "next/navigation"
 
 interface SidebarProps {
   links: LinkType[]
 }
 
 export const Sidebar: FC<SidebarProps> = ({ links }) => {
+  const pathname = usePathname()
+
+  const isLinkActive = useCallback(
+    (href: string) => {
+      return pathname?.includes(href) ? "" : "gray"
+    },
+    [pathname]
+  )
   return (
     <Flex
       direction="column"
@@ -25,14 +34,14 @@ export const Sidebar: FC<SidebarProps> = ({ links }) => {
         gap={16}
       >
         {links.map((link) => (
-          <Button
-            variant="light"
-            component={Link}
+          <SidebarLink
+            variant="transparent"
+            color={isLinkActive(link.href)}
             href={link.href}
             key={link.href}
           >
             {link.label}
-          </Button>
+          </SidebarLink>
         ))}
       </Flex>
     </Flex>
