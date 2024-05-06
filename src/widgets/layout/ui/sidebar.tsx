@@ -1,9 +1,12 @@
 import { FC, useCallback } from "react"
-import Image from "next/image"
-import { Flex, Button } from "@mantine/core"
-import { LinkType } from "@/shared/types/link"
-import { SidebarLink } from "./sidebar-link"
 import { usePathname } from "next/navigation"
+
+import { Flex } from "@mantine/core"
+
+import { LinkType } from "@/shared/types/link"
+
+import { SidebarLink } from "./sidebar-link"
+import { Logo } from "@/shared/ui/logo"
 
 interface SidebarProps {
   links: LinkType[]
@@ -23,12 +26,7 @@ export const Sidebar: FC<SidebarProps> = ({ links }) => {
       direction="column"
       gap={32}
     >
-      <Image
-        src="/images/logo.webp"
-        alt="logo"
-        width={128}
-        height={32}
-      />
+      <Logo />
       <Flex
         direction="column"
         gap={16}

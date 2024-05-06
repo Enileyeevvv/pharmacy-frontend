@@ -1,5 +1,7 @@
+import { SignInPage } from "@/pages/sign-in/ui/page"
+
 const SignIn = () => {
-  return <>SignIn</>
+  return <SignInPage />
 }
 
 export default SignIn
