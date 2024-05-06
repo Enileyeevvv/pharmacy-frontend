@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, PropsWithChildren } from "react"
+import { FC, PropsWithChildren, ReactElement } from "react"
 import { AppShell } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 
@@ -11,9 +11,17 @@ import { Sidebar } from "./sidebar"
 
 interface LayoutProps extends PropsWithChildren {
   navLinks: LinkType[]
+
+  headerLeftSide?: ReactElement
+  headerRightSide?: ReactElement
 }
 
-export const Layout: FC<LayoutProps> = ({ navLinks, children }) => {
+export const Layout: FC<LayoutProps> = ({
+  navLinks,
+  children,
+  headerLeftSide,
+  headerRightSide,
+}) => {
   const [opened, { toggle }] = useDisclosure()
 
   return (
@@ -31,6 +39,8 @@ export const Layout: FC<LayoutProps> = ({ navLinks, children }) => {
         <Header
           isMobileMenuOpened={opened}
           onBurgerClick={toggle}
+          leftSide={headerLeftSide}
+          rightSide={headerRightSide}
         />
       </AppShell.Header>
 

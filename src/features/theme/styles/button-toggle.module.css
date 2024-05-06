@@ -1,0 +1,25 @@
+.sun_icon {
+  width: 22px;
+  height: 22px;
+
+  @mixin light {
+    display: none;
+  }
+
+  @mixin dark {
+    display: block;
+  }
+}
+
+.moon_icon {
+  width: 22px;
+  height: 22px;
+
+  @mixin light {
+    display: block;
+  }
+
+  @mixin dark {
+    display: none;
+  }
+}
