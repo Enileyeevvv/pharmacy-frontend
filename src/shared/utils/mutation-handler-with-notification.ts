@@ -1,22 +1,26 @@
 import { showAppNotification } from "./show-app-notification"
 
+interface MutationHandlerWithNotificationParams<T> {
+  promise: () => Promise<T>
+  id?: string
+  autoClose?: number
+  loadingTitle?: string
+  successTitle?: string
+  errorTitle?: string
+}
+
 export const mutationHandlerWithNotification = async <T>({
   promise,
   id = "mutation",
   autoClose = 2000,
+  loadingTitle = "Загрузка...",
   successTitle = "Успех",
   errorTitle = "Ошибка",
-}: {
-  promise: () => Promise<T>
-  id?: string
-  autoClose?: number
-  successTitle?: string
-  errorTitle?: string
-}) => {
+}: MutationHandlerWithNotificationParams<T>) => {
   showAppNotification({
     id,
     loading: true,
-    title: "Загрузка...",
+    title: loadingTitle,
     message: "Пожалуйста, подождите",
     autoClose: false,
     withCloseButton: false,
