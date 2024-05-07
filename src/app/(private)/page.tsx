@@ -1,4 +1,4 @@
-import { HomePage } from "@/pages/home/ui/page"
+import { HomePage } from "@/templates/home/ui/page"
 
 const Home = () => {
   return <HomePage />
