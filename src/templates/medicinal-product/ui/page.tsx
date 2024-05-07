@@ -1,3 +1,5 @@
+"use client"
+
 import { Center, Flex, Loader } from "@mantine/core"
 
 import { MedicinalProductList } from "@/widgets/medicinal-product/ui/list"
