@@ -3,24 +3,22 @@ import { usePathname } from "next/navigation"
 
 import { Flex } from "@mantine/core"
 
+import { Logo } from "@/shared/ui/logo"
 import { LinkType } from "@/shared/types/link"
 
 import { SidebarLink } from "./sidebar-link"
-import { Logo } from "@/shared/ui/logo"
 
 interface SidebarProps {
   links: LinkType[]
 }
 
+const isLinkActive = (pathname: string, href: string) => {
+  return pathname === href ? "" : "gray"
+}
+
 export const Sidebar: FC<SidebarProps> = ({ links }) => {
   const pathname = usePathname()
 
-  const isLinkActive = useCallback(
-    (href: string) => {
-      return pathname?.includes(href) ? "" : "gray"
-    },
-    [pathname]
-  )
   return (
     <Flex
       direction="column"
@@ -34,7 +32,7 @@ export const Sidebar: FC<SidebarProps> = ({ links }) => {
         {links.map((link) => (
           <SidebarLink
             variant="transparent"
-            color={isLinkActive(link.href)}
+            color={isLinkActive(pathname, link.href)}
             href={link.href}
             key={link.href}
           >
