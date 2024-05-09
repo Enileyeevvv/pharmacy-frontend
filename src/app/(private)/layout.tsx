@@ -5,8 +5,8 @@ import { URLs } from "@/shared/config/urls"
 
 const privateLinks = [
   {
-    label: "Главная",
-    href: URLs.HOME,
+    label: "Профиль",
+    href: URLs.PROFILE,
   },
   {
     label: "Лекарства",

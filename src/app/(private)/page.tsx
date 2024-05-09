@@ -1,7 +1,7 @@
-import { HomePage } from "@/templates/home/ui/page"
+import { ProfilePage } from "@/templates/user/ui/profile-page"
 
-const Home = () => {
-  return <HomePage />
+const Page = () => {
+  return <ProfilePage />
 }
 
-export default Home
+export default Page
