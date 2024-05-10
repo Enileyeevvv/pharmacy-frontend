@@ -7,6 +7,8 @@ import { mutationHandlerWithNotification } from "@/shared/utils/mutation-handler
 const initialValues = {
   name: "",
   description: "",
+  sellName: "",
+  ATXCode: "",
   quantity: "0",
   maxQuantity: "0",
 }

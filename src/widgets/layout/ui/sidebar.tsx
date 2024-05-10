@@ -1,7 +1,7 @@
-import { FC, useCallback } from "react"
+import { FC, ReactElement, useCallback } from "react"
 import { usePathname } from "next/navigation"
 
-import { Flex } from "@mantine/core"
+import { Center, Flex } from "@mantine/core"
 
 import { Logo } from "@/shared/ui/logo"
 import { LinkType } from "@/shared/types/link"
@@ -10,19 +10,22 @@ import { SidebarLink } from "./sidebar-link"
 
 interface SidebarProps {
   links: LinkType[]
+  bottomSide?: ReactElement
 }
 
 const isLinkActive = (pathname: string, href: string) => {
   return pathname === href ? "" : "gray"
 }
 
-export const Sidebar: FC<SidebarProps> = ({ links }) => {
+export const Sidebar: FC<SidebarProps> = ({ links, bottomSide }) => {
   const pathname = usePathname()
 
   return (
     <Flex
       direction="column"
       gap={32}
+      h="100%"
+      justify="space-between"
     >
       <Logo />
       <Flex
@@ -40,6 +43,7 @@ export const Sidebar: FC<SidebarProps> = ({ links }) => {
           </SidebarLink>
         ))}
       </Flex>
+      <Center>{bottomSide}</Center>
     </Flex>
   )
 }

@@ -2,6 +2,7 @@ import { PropsWithChildren } from "react"
 
 import { Layout } from "@/widgets/layout/ui/layout"
 import { URLs } from "@/shared/config/urls"
+import { SignOutButton } from "@/features/user/ui/sign-out-button"
 
 const privateLinks = [
   {
@@ -15,7 +16,14 @@ const privateLinks = [
 ]
 
 const PrivateLayout = ({ children }: PropsWithChildren) => {
-  return <Layout navLinks={privateLinks}>{children}</Layout>
+  return (
+    <Layout
+      navLinks={privateLinks}
+      sidebarBottomSide={<SignOutButton />}
+    >
+      {children}
+    </Layout>
+  )
 }
 
 export default PrivateLayout

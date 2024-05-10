@@ -17,6 +17,7 @@
     "@mantine/notifications": "^7.9.0",
     "@reduxjs/toolkit": "^2.2.3",
     "@tabler/icons-react": "^3.3.0",
+    "cookies-next": "^4.1.1",
     "dayjs": "^1.11.11",
     "mantine-form-zod-resolver": "^1.1.0",
     "next": "14.2.3",

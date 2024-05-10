@@ -39,7 +39,7 @@ const userAPI = api.injectEndpoints({
         body,
       }),
     }),
-    signOut: builder.mutation<SignOutRes, SignOutReq>({
+    signOut: builder.mutation<SignOutRes, void>({
       query: (body) => ({
         url: UserService.SIGN.OUT,
         method: "POST",

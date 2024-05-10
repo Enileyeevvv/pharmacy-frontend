@@ -14,6 +14,8 @@ interface LayoutProps extends PropsWithChildren {
 
   headerLeftSide?: ReactElement
   headerRightSide?: ReactElement
+
+  sidebarBottomSide?: ReactElement
 }
 
 export const Layout: FC<LayoutProps> = ({
@@ -21,6 +23,7 @@ export const Layout: FC<LayoutProps> = ({
   children,
   headerLeftSide,
   headerRightSide,
+  sidebarBottomSide,
 }) => {
   const [opened, { toggle }] = useDisclosure()
 
@@ -45,7 +48,10 @@ export const Layout: FC<LayoutProps> = ({
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
-        <Sidebar links={navLinks} />
+        <Sidebar
+          links={navLinks}
+          bottomSide={sidebarBottomSide}
+        />
       </AppShell.Navbar>
 
       <AppShell.Main>{children}</AppShell.Main>
