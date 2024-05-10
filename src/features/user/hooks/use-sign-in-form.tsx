@@ -1,8 +1,13 @@
-import { useSignInMutation } from "@/entities/user/api/endpoints"
-import { mutationHandlerWithNotification } from "@/shared/utils/mutation-handler-with-notification"
-import { useForm, zodResolver } from "@mantine/form"
+"use client"
+
 import { useCallback } from "react"
 import { z } from "zod"
+import { useForm, zodResolver } from "@mantine/form"
+import { useRouter } from "next/navigation"
+
+import { useSignInMutation } from "@/entities/user/api/endpoints"
+import { URLs } from "@/shared/config/urls"
+import { mutationHandlerWithNotification } from "@/shared/utils/mutation-handler-with-notification"
 
 const initialValues = {
   login: "",
@@ -31,6 +36,7 @@ const signInScheme = z.object({
 const validate = zodResolver(signInScheme)
 
 export const useSignInForm = () => {
+  const { push } = useRouter()
   const { values, getInputProps, onSubmit, ...form } = useForm({
     initialValues,
     validate,
@@ -43,11 +49,13 @@ export const useSignInForm = () => {
         await mutationHandlerWithNotification({
           promise: () => signIn(data).unwrap(),
         })
+
+        push(URLs.PROFILE)
       } catch (e) {
         console.log(e)
       }
     },
-    [signIn]
+    [push, signIn]
   )
 
   return { values, getInputProps, onSubmit, handleSubmit, form, isLoading }
