@@ -23,8 +23,6 @@ interface GetUserInfoRes {
   typeID: UserType
 }
 
-interface GetUserInfoReq {}
-
 const userAPI = api.injectEndpoints({
   endpoints: (builder) => ({
     signUp: builder.mutation<SignUpRes, SignUpReq>({
@@ -48,7 +46,7 @@ const userAPI = api.injectEndpoints({
         body,
       }),
     }),
-    getUserInfo: builder.query<GetUserInfoRes, GetUserInfoReq>({
+    getUserInfo: builder.query<GetUserInfoRes, void>({
       query: () => ({
         url: UserService.INFO,
         method: "GET",

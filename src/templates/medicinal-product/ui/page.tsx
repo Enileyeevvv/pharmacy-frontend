@@ -1,7 +1,7 @@
 import { Flex } from "@mantine/core"
 
 import { MedicinalProductList } from "@/widgets/medicinal-product/ui/list"
-import { CreateMedicinalProductButton } from "@/features/medicinal-product/ui/button-create"
+import { MedicinalProductButtonGroup } from "@/widgets/medicinal-product/ui/button-group"
 
 export const MedicinalProductPage = () => {
   return (
@@ -9,7 +9,7 @@ export const MedicinalProductPage = () => {
       gap={16}
       direction="column"
     >
-      <CreateMedicinalProductButton />
+      <MedicinalProductButtonGroup />
       <MedicinalProductList />
     </Flex>
   )
