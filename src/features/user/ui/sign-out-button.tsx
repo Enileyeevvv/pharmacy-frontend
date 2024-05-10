@@ -19,7 +19,7 @@ export const SignOutButton = () => {
         promise: () => signOut().unwrap(),
       })
 
-      await deleteCookie("access-token")
+      deleteCookie("access-token")
       push(URLs.SIGN_IN)
     } catch (e) {
       console.log(e)
