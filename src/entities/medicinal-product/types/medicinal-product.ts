@@ -18,7 +18,7 @@ export interface MedicinalProduct {
   pharmaceuticalGroupName: string
   companyID: number
   companyName: string
-  imageUrl: string
+  imageURL: string
   quantity: number
   maxQuantity: number
 }

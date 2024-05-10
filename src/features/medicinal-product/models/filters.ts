@@ -12,7 +12,7 @@ interface MedicinalProductFilterInitialState {
 
 const initialState: MedicinalProductFilterInitialState = {
   pagination: {
-    limit: 10,
+    limit: 3,
     offset: 1,
   },
   variables: {},

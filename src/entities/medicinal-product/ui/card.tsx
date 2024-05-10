@@ -28,8 +28,7 @@ export const MedicinalProductCard: FC<MedicinalProductCardProps> = ({
         <Card.Section>
           <Center>
             <img
-              // src={product.imageUrl}
-              src="https://apteki.me/static/images/product/7693505/460x460_boyaryshnik-forte-evalar-tab-560mg-40.jpg"
+              src={product.imageURL}
               height={160}
               alt="Norway"
             />
@@ -48,21 +47,28 @@ export const MedicinalProductCard: FC<MedicinalProductCardProps> = ({
           fz={14}
           fw={400}
         >
-          {`Торговое название: ${product.sellName || product.name}`}
+          {`Код ATX: ${product.ATXCode}`}
         </Text>
 
         <Text
           fz={14}
           fw={400}
         >
-          {`Код ATX: ${product.ATXCode || "888"}`}
+          {`Торговое название: ${product.sellName}`}
         </Text>
 
         <Text
           fz={14}
           fw={400}
         >
-          {product.pharmaceuticalGroupName}
+          {`Производитель: ${product.companyName}`}
+        </Text>
+
+        <Text
+          fz={14}
+          fw={400}
+        >
+          {`Фармакологическая группа: ${product.pharmaceuticalGroupName}`}
         </Text>
 
         <Text
