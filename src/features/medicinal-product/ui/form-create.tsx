@@ -24,10 +24,20 @@ export const CreateMedicinalProductForm: FC<
         placeholder="Введите название"
         {...getInputProps("name")}
       />
+      <TextInput
+        label="Торговое название"
+        placeholder="Введите торговое название"
+        {...getInputProps("sellName")}
+      />
       <Textarea
         label="Описание"
         placeholder="Введите описание"
         {...getInputProps("description")}
+      />
+      <Textarea
+        label="Код ATX"
+        placeholder="Введите код ATX"
+        {...getInputProps("ATXCode")}
       />
       <ThousandInput
         label="Количество"

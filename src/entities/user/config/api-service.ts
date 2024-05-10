@@ -3,9 +3,9 @@ const userRoot = "/user"
 const signRoot = "/sign"
 
 const SIGN = {
-  UP: `${userRoot}${signRoot}/up1`,
-  IN: `${userRoot}${signRoot}/in1`,
-  OUT: `${userRoot}${signRoot}/out1`,
+  UP: `${userRoot}${signRoot}/up`,
+  IN: `${userRoot}${signRoot}/in`,
+  OUT: `${userRoot}${signRoot}/out`,
 }
 
 export const UserService = {
