@@ -3,28 +3,35 @@ import { api } from "@/shared/api/api"
 import { MedicinalProduct } from "../types/medicinal-product"
 import { MedicinalProductService } from "../config/api-service"
 
-interface IGetMedicinalProductListRes {
+interface GetMedicinalProductListRes {
   hasNext: boolean
   data: MedicinalProduct[]
 }
-interface IGetMedicinalProductListReq {
+interface GetMedicinalProductListReq {
   limit: number
   offset: number
 }
 
-interface IGetMedicinalProductRes {
+interface GetMedicinalProductRes {
   data: MedicinalProduct
 }
-interface IGetMedicinalProductReq {
+interface GetMedicinalProductReq {
   id: number
 }
 
-interface ICreateMedicinalProductListRes {}
-interface ICreateMedicinalProductListReq
-  extends Omit<MedicinalProduct, "id"> {}
+interface CreateMedicinalProductRes {}
+interface CreateMedicinalProductReq {
+  name: string
+  // Торговое название, мб можно назвать как-то получше
+  sellName: string
+  ATXCode: string
+  description: string
+  quantity: number
+  maxQuantity: number
+}
 
-interface IUpdateMedicinalProductListRes {}
-interface IUpdateMedicinalProductListReq {
+interface UpdateMedicinalProductRes {}
+interface UpdateMedicinalProductReq {
   id: number
   name?: string
   description?: string
@@ -37,11 +44,17 @@ interface IDeleteMedicinalProductListReq {
   id: number
 }
 
+interface AddMedicinalProductRes {}
+interface AddMedicinalProductReq {
+  id: number
+  quantity: number
+}
+
 const medicinalProductAPI = api.injectEndpoints({
   endpoints: (builder) => ({
     getMedicinalProductList: builder.query<
-      IGetMedicinalProductListRes,
-      IGetMedicinalProductListReq
+      GetMedicinalProductListRes,
+      GetMedicinalProductListReq
     >({
       query: (params) => ({
         url: MedicinalProductService.ROOT,
@@ -51,8 +64,8 @@ const medicinalProductAPI = api.injectEndpoints({
       providesTags: ["medicinal-product-list"],
     }),
     getMedicinalProduct: builder.query<
-      IGetMedicinalProductRes,
-      IGetMedicinalProductReq
+      GetMedicinalProductRes,
+      GetMedicinalProductReq
     >({
       query: (params) => ({
         url: `${MedicinalProductService.ROOT}/${params.id}`,
@@ -61,8 +74,8 @@ const medicinalProductAPI = api.injectEndpoints({
       providesTags: ["medicinal-product-list"],
     }),
     createMedicinalProduct: builder.mutation<
-      ICreateMedicinalProductListRes,
-      ICreateMedicinalProductListReq
+      CreateMedicinalProductRes,
+      CreateMedicinalProductReq
     >({
       query: (body) => ({
         url: MedicinalProductService.ROOT,
@@ -72,8 +85,8 @@ const medicinalProductAPI = api.injectEndpoints({
       invalidatesTags: ["medicinal-product-list"],
     }),
     editMedicinalProduct: builder.mutation<
-      IUpdateMedicinalProductListRes,
-      IUpdateMedicinalProductListReq
+      UpdateMedicinalProductRes,
+      UpdateMedicinalProductReq
     >({
       query: (body) => ({
         url: MedicinalProductService.ROOT,
@@ -93,6 +106,16 @@ const medicinalProductAPI = api.injectEndpoints({
       }),
       invalidatesTags: ["medicinal-product-list"],
     }),
+    addMedicinalProduct: builder.mutation<
+      AddMedicinalProductRes,
+      AddMedicinalProductReq
+    >({
+      query: (body) => ({
+        url: MedicinalProductService.ADD_QUANTITY,
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 })
 
@@ -102,4 +125,5 @@ export const {
   useEditMedicinalProductMutation,
   useDeleteMedicinalProductMutation,
   useCreateMedicinalProductMutation,
+  useAddMedicinalProductMutation,
 } = medicinalProductAPI

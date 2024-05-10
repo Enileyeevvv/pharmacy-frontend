@@ -2,7 +2,6 @@ import { api } from "@/shared/api/api"
 
 import { UserService } from "../config/api-service"
 import { UserType } from "../config/user-types"
-import { User } from "../types/user"
 
 interface SignUpRes {}
 interface SignUpReq {
@@ -19,7 +18,11 @@ interface SignInReq {
 interface SignOutRes {}
 interface SignOutReq {}
 
-interface GetUserInfoRes extends User {}
+interface GetUserInfoRes {
+  name: string
+  typeID: UserType
+}
+
 interface GetUserInfoReq {}
 
 const userAPI = api.injectEndpoints({
