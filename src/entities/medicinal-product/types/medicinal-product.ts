@@ -7,11 +7,6 @@ interface MedicinalProductCompany {
   image: Base64
 }
 
-interface PharmaceuticalGroup {
-  id: number
-  name: string
-}
-
 export interface MedicinalProduct {
   id: number
   name: string
@@ -19,8 +14,11 @@ export interface MedicinalProduct {
   sellName: string
   ATXCode: string
   description: string
-  pharmaceuticalGroup: PharmaceuticalGroup
-  company: MedicinalProductCompany
+  pharmaceuticalGroupID: number
+  pharmaceuticalGroupName: string
+  companyID: number
+  companyName: string
+  imageUrl: string
   quantity: number
   maxQuantity: number
 }
