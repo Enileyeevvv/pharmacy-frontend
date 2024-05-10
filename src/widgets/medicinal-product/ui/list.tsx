@@ -1,26 +1,44 @@
-import { MedicinalProduct } from "@/entities/medicinal-product/types/medicinal-product"
-import { MedicinalProductCard } from "@/entities/medicinal-product/ui/card"
-import { Badge, Button, Card, Flex, Group } from "@mantine/core"
+"use client"
+
 import { FC } from "react"
+import { Flex } from "@mantine/core"
 
-interface MedicinalProductListProps {
-  products: MedicinalProduct[]
-}
+import { MedicinalProductSelectors } from "@/features/medicinal-product/selectors/filters"
+import { MedicinalProductPagination } from "@/features/medicinal-product/ui/pagination"
+import { useGetMedicinalProductListQuery } from "@/entities/medicinal-product/api/endpoints"
+import { MedicinalProductCard } from "@/entities/medicinal-product/ui/card"
+import { useAppSelector } from "@/shared/hooks/use-app-selector"
 
-export const MedicinalProductList: FC<MedicinalProductListProps> = ({
-  products,
-}) => {
+export const MedicinalProductList: FC = () => {
+  const { pagination, variables } = useAppSelector(
+    MedicinalProductSelectors.getMedicinalProductFilter
+  )
+
+  const { data } = useGetMedicinalProductListQuery({
+    ...pagination,
+    ...variables,
+  })
+
   return (
     <Flex
       gap={16}
-      wrap="wrap"
+      direction="column"
     >
-      {products.map((product) => (
-        <MedicinalProductCard
-          key={product.id}
-          product={product}
-        />
-      ))}
+      <Flex
+        gap={16}
+        wrap="wrap"
+      >
+        {data?.data.map((product) => (
+          <MedicinalProductCard
+            key={product.id}
+            product={product}
+          />
+        ))}
+      </Flex>
+      <MedicinalProductPagination
+        hasNext={data?.hasNext}
+        offset={pagination.offset}
+      />
     </Flex>
   )
 }
