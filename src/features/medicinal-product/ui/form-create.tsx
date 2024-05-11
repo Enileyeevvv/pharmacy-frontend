@@ -34,7 +34,7 @@ export const CreateMedicinalProductForm: FC<
         placeholder="Введите описание"
         {...getInputProps("description")}
       />
-      <Textarea
+      <TextInput
         label="Код ATX"
         placeholder="Введите код ATX"
         {...getInputProps("ATXCode")}
@@ -45,8 +45,8 @@ export const CreateMedicinalProductForm: FC<
         {...getInputProps("quantity")}
       />
       <ThousandInput
-        label="Количество"
-        placeholder="Введите количество"
+        label="Максимальное количество"
+        placeholder="Введите максимальное количество"
         {...getInputProps("maxQuantity")}
       />
       <Button

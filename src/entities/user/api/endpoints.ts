@@ -51,6 +51,7 @@ const userAPI = api.injectEndpoints({
         url: UserService.INFO,
         method: "GET",
       }),
+      keepUnusedDataFor: 0,
     }),
   }),
 })

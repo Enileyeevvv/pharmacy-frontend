@@ -9,14 +9,16 @@ const initialValues = {
   description: "",
   sellName: "",
   ATXCode: "",
-  quantity: "0",
-  maxQuantity: "0",
+  quantity: "",
+  maxQuantity: "",
 }
 
 const createScheme = z
   .object({
     name: z.string().min(1, { message: "Поле обязательно" }),
     description: z.string().min(1, { message: "Поле обязательно" }),
+    sellName: z.string().min(1, { message: "Поле обязательно" }),
+    ATXCode: z.string().min(1, { message: "Поле обязательно" }),
     quantity: z.coerce.number(),
     maxQuantity: z.coerce
       .number()

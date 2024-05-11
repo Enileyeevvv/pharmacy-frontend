@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, TextInput } from "@mantine/core"
+import { Button, PasswordInput, TextInput } from "@mantine/core"
 
 import { Form } from "@/shared/ui/form"
 
@@ -17,7 +17,7 @@ export const SignInForm = () => {
         placeholder="Введите логин"
         {...getInputProps("login")}
       />
-      <TextInput
+      <PasswordInput
         label="Пароль"
         placeholder="Введите пароль"
         {...getInputProps("password")}

@@ -1,17 +1,23 @@
-import { Flex, Text } from "@mantine/core"
+"use client"
+import { Flex, Skeleton, Text } from "@mantine/core"
 
 import { UserProfileAvatar } from "@/entities/user/ui/avatar-profile"
 import { UserTypeBadge } from "@/entities/user/ui/badge-user-type"
-
-const user = {
-  name: "enileyeevvv",
-  typeID: 1,
-}
+import { useGetUserInfoQuery } from "@/entities/user/api/endpoints"
 
 export const UserProfileBlock = () => {
+  const { data } = useGetUserInfoQuery()
+
+  if (!data)
+    return (
+      <Skeleton
+        width={256}
+        height={64}
+      />
+    )
   return (
     <Flex gap={8}>
-      <UserProfileAvatar name={user.name} />
+      <UserProfileAvatar name={data.name} />
       <Flex
         direction="column"
         justify="space-between"
@@ -20,9 +26,9 @@ export const UserProfileBlock = () => {
           fz={20}
           fw={500}
         >
-          {user.name}
+          {data.name}
         </Text>
-        <UserTypeBadge typeID={user.typeID} />
+        <UserTypeBadge typeID={data.typeID} />
       </Flex>
     </Flex>
   )
