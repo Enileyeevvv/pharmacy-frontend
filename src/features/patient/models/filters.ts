@@ -1,24 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 import { Pagination } from "@/shared/types/pagination"
-interface MedicinalProductFilterInitialState {
+
+interface PatientFilterInitialState {
   pagination: Pagination
   variables: {}
 }
 
-const initialState: MedicinalProductFilterInitialState = {
+const initialState: PatientFilterInitialState = {
   pagination: {
-    limit: 3,
+    limit: 10,
     offset: 1,
   },
   variables: {},
 }
 
-export const medicinalProductFilterSlice = createSlice({
-  name: "medicinalProductFilter",
+export const patientFilterSlice = createSlice({
+  name: "patientFilter",
   initialState,
   reducers: {
-    changeMedicinalProductPaginate: (
+    changePatientPaginate: (
       state,
       { payload }: PayloadAction<Partial<Pagination>>
     ) => {
@@ -30,5 +31,4 @@ export const medicinalProductFilterSlice = createSlice({
   },
 })
 
-export const { changeMedicinalProductPaginate } =
-  medicinalProductFilterSlice.actions
+export const { changePatientPaginate } = patientFilterSlice.actions
