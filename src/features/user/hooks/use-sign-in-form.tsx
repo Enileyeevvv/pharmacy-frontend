@@ -50,7 +50,7 @@ export const useSignInForm = () => {
           promise: () => signIn(data).unwrap(),
         })
 
-        push(URLs.PROFILE)
+        push(URLs.MAIN)
       } catch (e) {
         console.log(e)
       }

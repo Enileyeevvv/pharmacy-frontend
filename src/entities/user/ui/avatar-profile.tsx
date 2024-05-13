@@ -19,7 +19,7 @@ export const UserProfileAvatar: FC<IUserProfileAvatarProps> = ({
       color="orange"
       variant="light"
       radius="xl"
-      size="lg"
+      size="md"
     >
       {firstUsernameLetterInUpperCase(name)}
     </Avatar>

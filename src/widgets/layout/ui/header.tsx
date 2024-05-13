@@ -25,13 +25,13 @@ export const Header: FC<HeaderProps> = ({
         align="center"
         gap={8}
       >
-        {leftSide}
         <Burger
           opened={isMobileMenuOpened}
           onClick={onBurgerClick}
           hiddenFrom="sm"
           size="sm"
         />
+        {leftSide}
       </Flex>
       <Flex
         align="center"

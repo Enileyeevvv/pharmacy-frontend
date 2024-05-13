@@ -1,4 +1,4 @@
-import { SignUpPage } from "@/templates/sign-up/ui/page"
+import { SignUpPage } from "@/templates/user/ui/sign-up-page"
 
 const SignUp = () => {
   return <SignUpPage />

@@ -1,7 +1,7 @@
 import { MedicinalProductPage } from "@/templates/medicinal-product/ui/page"
 
-const MedicinalProduct = () => {
+const Page = () => {
   return <MedicinalProductPage />
 }
 
-export default MedicinalProduct
+export default Page

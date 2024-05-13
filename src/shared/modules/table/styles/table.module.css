@@ -1,0 +1,21 @@
+.table {
+}
+
+.thead {
+  color: var(--mantine-color-gray-5);
+  font-weight: var(--mantine-font-size-sm);
+}
+
+.tbody {
+  font-weight: var(--mantine-font-size-md);
+}
+
+.tbody tr th {
+  border-top-style: solid;
+  border-top-width: em(1px);
+  border-top-color: var(--mantine-color-gray-2);
+
+  @mixin dark {
+    border-top-color: var(--mantine-color-dark-6);
+  }
+}

@@ -8,5 +8,5 @@ interface UserTypeBadgeProps {
 }
 
 export const UserTypeBadge: FC<UserTypeBadgeProps> = ({ typeID }) => {
-  return <Badge>{UserType[typeID]}</Badge>
+  return <Badge size="sm">{UserType[typeID]}</Badge>
 }

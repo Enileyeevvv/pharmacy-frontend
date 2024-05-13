@@ -11,7 +11,7 @@ export function middleware(request: NextRequest) {
     url.pathname = URLs.SIGN_IN
     return NextResponse.redirect(url)
   } else if (authRotes.includes(url.pathname) && isAuth?.value) {
-    url.pathname = URLs.PROFILE
+    url.pathname = URLs.MAIN
     return NextResponse.redirect(url)
   }
 }

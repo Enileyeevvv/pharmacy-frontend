@@ -1,4 +1,5 @@
 "use client"
+
 import { Flex, Skeleton, Text } from "@mantine/core"
 
 import { UserProfileAvatar } from "@/entities/user/ui/avatar-profile"
@@ -12,11 +13,14 @@ export const UserProfileBlock = () => {
     return (
       <Skeleton
         width={256}
-        height={64}
+        height={52}
       />
     )
   return (
-    <Flex gap={8}>
+    <Flex
+      gap={8}
+      align="center"
+    >
       <UserProfileAvatar name={data.name} />
       <Flex
         direction="column"
