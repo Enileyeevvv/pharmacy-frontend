@@ -14,7 +14,7 @@ interface SidebarProps {
 }
 
 const isLinkActive = (pathname: string, href: string) => {
-  return pathname === href ? "" : "gray"
+  return pathname.includes(href) ? "" : "gray"
 }
 
 export const Sidebar: FC<SidebarProps> = ({ links, bottomSide }) => {
