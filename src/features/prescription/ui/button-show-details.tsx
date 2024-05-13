@@ -4,17 +4,17 @@ import { IconGripVertical } from "@tabler/icons-react"
 import { URLs } from "@/shared/config/urls"
 import Link from "next/link"
 
-interface ShowPatientDetailsButtonProps {
+interface ShowPrescriptionDetailsButtonProps {
   id: number
 }
 
-export const ShowPatientDetailsButton: FC<
-  ShowPatientDetailsButtonProps
+export const ShowPrescriptionDetailsButton: FC<
+  ShowPrescriptionDetailsButtonProps
 > = ({ id }) => {
   return (
     <ActionIcon
       component={Link}
-      href={`${URLs.PATIENT}/${id}`}
+      href={`${URLs.PRESCRIPTION}/${id}`}
       variant="subtle"
     >
       <IconGripVertical />
