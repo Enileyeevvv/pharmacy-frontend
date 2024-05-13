@@ -1,4 +1,7 @@
-import { Flex } from "@mantine/core"
+"use client"
+
+import { PrescriptionTable } from "@/widgets/prescription/ui/table"
+import { Flex, Grid } from "@mantine/core"
 
 export const PrescriptionPage = () => {
   return (
@@ -6,7 +9,7 @@ export const PrescriptionPage = () => {
       gap={16}
       direction="column"
     >
-      Prescription
+      <PrescriptionTable />
     </Flex>
   )
 }
