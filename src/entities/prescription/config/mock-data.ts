@@ -1,3 +1,4 @@
+import { PrescriptionChangeHistory } from "../api/endpoints"
 import {
   Prescription,
   PrescriptionStamp,
@@ -63,3 +64,18 @@ export const prescriptions: Prescription[] = [
 ]
 
 export const prescription = prescriptions[0]
+
+export const prescriptionChangeHistory: PrescriptionChangeHistory[] = [
+  {
+    statusID: PrescriptionStatus.PENDING,
+    updatedAt: 1_715_601_600,
+  },
+  {
+    statusID: PrescriptionStatus.SUCCEED,
+    updatedAt: 1_715_601_600,
+  },
+  {
+    statusID: PrescriptionStatus.CANCELED,
+    updatedAt: 1_715_601_600,
+  },
+]

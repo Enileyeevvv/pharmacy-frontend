@@ -12,7 +12,7 @@ const tabs = [
     value: "details",
   },
   {
-    label: "История",
+    label: "История изменений",
     value: "history",
   },
 ]

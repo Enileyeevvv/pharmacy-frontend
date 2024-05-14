@@ -4,6 +4,7 @@ import { useParams } from "next/navigation"
 import { useMemo } from "react"
 
 import { PrescriptionGeneralInfo } from "./general-info"
+import { PrescriptionChangeHistoryTable } from "./table-change-history"
 
 export const PrescriptionMainDetails = () => {
   const { id, tab } = useParams()
@@ -11,7 +12,7 @@ export const PrescriptionMainDetails = () => {
   const widget = useMemo(() => {
     switch (String(tab)) {
       case "history":
-        return "ИСтория"
+        return <PrescriptionChangeHistoryTable />
       default:
         return <PrescriptionGeneralInfo />
     }

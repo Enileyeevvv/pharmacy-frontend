@@ -1,27 +1,39 @@
 import { api } from "@/shared/api/api"
 import { QueryParam } from "@/shared/types/query-param"
 
-import { Prescription } from "../types/prescription"
+import { Prescription, PrescriptionStatus } from "../types/prescription"
 import { PrescriptionService } from "../config/api-service"
 
-interface IGetPrescriptionListRes {
+export interface PrescriptionChangeHistory {
+  statusID: PrescriptionStatus
+  updatedAt: number
+}
+interface GetPrescriptionListRes {
   hasNext: boolean
   data: Prescription[]
 }
-interface IGetPrescriptionListReq {
+interface GetPrescriptionListReq {
   limit: number
   offset: number
 }
 
-interface IGetPrescriptionRes {
+interface GetPrescriptionRes {
   data: Prescription
 }
-interface IGetPrescriptionReq {
+interface GetPrescriptionReq {
   id: QueryParam
 }
 
-interface ICretePrescriptionRes {}
-interface ICretePrescriptionReq {
+interface GetPrescriptionChangeHistoryRes {
+  hasNext: boolean
+  data: PrescriptionChangeHistory[]
+}
+interface GetPrescriptionChangeHistoryReq {
+  id: QueryParam
+}
+
+interface CretePrescriptionRes {}
+interface CretePrescriptionReq {
   patientID: number
   medicinalProductID: number
 }
@@ -29,8 +41,8 @@ interface ICretePrescriptionReq {
 const prescriptionAPI = api.injectEndpoints({
   endpoints: (builder) => ({
     getPrescriptionList: builder.query<
-      IGetPrescriptionListRes,
-      IGetPrescriptionListReq
+      GetPrescriptionListRes,
+      GetPrescriptionListReq
     >({
       query: (params) => ({
         url: PrescriptionService.ROOT,
@@ -39,20 +51,29 @@ const prescriptionAPI = api.injectEndpoints({
       }),
       providesTags: ["prescription-list"],
     }),
-    getPrescription: builder.query<
-      IGetPrescriptionRes,
-      IGetPrescriptionReq
+    getPrescription: builder.query<GetPrescriptionRes, GetPrescriptionReq>(
+      {
+        query: ({ id, ...params }) => ({
+          url: `${PrescriptionService.ROOT}/${id}`,
+          method: "GET",
+          params,
+        }),
+        providesTags: ["prescription-list"],
+      }
+    ),
+    getPrescriptionChangeHistory: builder.query<
+      GetPrescriptionChangeHistoryRes,
+      GetPrescriptionChangeHistoryReq
     >({
       query: ({ id, ...params }) => ({
-        url: `${PrescriptionService.ROOT}/${id}`,
+        url: `${PrescriptionService.HISTORY}/${id}`,
         method: "GET",
         params,
       }),
-      providesTags: ["prescription-list"],
     }),
     createPrescription: builder.mutation<
-      ICretePrescriptionRes,
-      ICretePrescriptionReq
+      CretePrescriptionRes,
+      CretePrescriptionReq
     >({
       query: (body) => ({
         url: PrescriptionService.ROOT,
@@ -67,5 +88,6 @@ const prescriptionAPI = api.injectEndpoints({
 export const {
   useGetPrescriptionListQuery,
   useGetPrescriptionQuery,
+  useGetPrescriptionChangeHistoryQuery,
   useCreatePrescriptionMutation,
 } = prescriptionAPI
