@@ -7,7 +7,7 @@ import { PrescriptionGeneralInfo } from "./general-info"
 import { PrescriptionChangeHistoryTable } from "./table-change-history"
 
 export const PrescriptionMainDetails = () => {
-  const { id, tab } = useParams()
+  const { tab } = useParams()
 
   const widget = useMemo(() => {
     switch (String(tab)) {

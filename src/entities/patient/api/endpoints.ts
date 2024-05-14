@@ -1,8 +1,9 @@
 import { api } from "@/shared/api/api"
+import { QueryParam } from "@/shared/types/query-param"
+import { Prescription } from "@/entities/prescription/types/prescription"
 
 import { PatientService } from "../config/api-service"
 import { Patient } from "../types/patient"
-import { QueryParam } from "@/shared/types/query-param"
 
 interface GetPatientListRes {
   hasNext: boolean
@@ -18,9 +19,29 @@ interface GetPatientReq {
   id: QueryParam
 }
 
+interface GetPatientMedicinalLeafRes {
+  hasNext: boolean
+  data: Prescription[]
+}
+interface GetPatientMedicinalLeafReq {
+  limit: number
+  offset: number
+}
+
 const patientAPI = api.injectEndpoints({
   endpoints: (builder) => ({
     getPatientList: builder.query<GetPatientListRes, GetPatientListReq>({
+      query: (params) => ({
+        url: PatientService.ROOT,
+        method: "GET",
+        params,
+      }),
+      providesTags: ["patient-list"],
+    }),
+    getPatientMedicinalLeaf: builder.query<
+      GetPatientMedicinalLeafRes,
+      GetPatientMedicinalLeafReq
+    >({
       query: (params) => ({
         url: PatientService.ROOT,
         method: "GET",
@@ -39,4 +60,8 @@ const patientAPI = api.injectEndpoints({
   }),
 })
 
-export const { useGetPatientListQuery, useGetPatientQuery } = patientAPI
+export const {
+  useGetPatientListQuery,
+  useGetPatientMedicinalLeafQuery,
+  useGetPatientQuery,
+} = patientAPI
