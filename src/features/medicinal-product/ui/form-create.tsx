@@ -1,5 +1,11 @@
 import { FC } from "react"
-import { Button, TextInput, Textarea } from "@mantine/core"
+import {
+  Button,
+  Pill,
+  PillsInput,
+  TextInput,
+  Textarea,
+} from "@mantine/core"
 
 import { Form } from "@/shared/ui/form"
 import { ThousandInput } from "@/shared/ui/thousand-input"
@@ -39,6 +45,20 @@ export const CreateMedicinalProductForm: FC<
         placeholder="Введите код ATX"
         {...getInputProps("ATXCode")}
       />
+      <TextInput
+        label="Название компании"
+        placeholder="Введите название компании"
+        {...getInputProps("companyName")}
+      />
+      <PillsInput label="Ссылка на изображение">
+        <Pill.Group>
+          <Pill>https://</Pill>
+          <PillsInput.Field
+            placeholder="Введите ссылку на изображение"
+            {...getInputProps("imageURL")}
+          />
+        </Pill.Group>
+      </PillsInput>
       <ThousandInput
         label="Количество"
         placeholder="Введите количество"

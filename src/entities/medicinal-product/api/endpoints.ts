@@ -22,12 +22,13 @@ interface GetMedicinalProductReq {
 interface CreateMedicinalProductRes {}
 interface CreateMedicinalProductReq {
   name: string
-  // Торговое название, мб можно назвать как-то получше
   sellName: string
   ATXCode: string
   description: string
   quantity: number
   maxQuantity: number
+  companyName: string
+  imageURL: string
 }
 
 interface UpdateMedicinalProductRes {}

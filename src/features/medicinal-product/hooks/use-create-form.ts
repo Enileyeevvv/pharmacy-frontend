@@ -11,6 +11,8 @@ const initialValues = {
   ATXCode: "",
   quantity: "",
   maxQuantity: "",
+  companyName: "",
+  imageURL: "",
 }
 
 const createScheme = z
@@ -19,6 +21,8 @@ const createScheme = z
     description: z.string().min(1, { message: "Поле обязательно" }),
     sellName: z.string().min(1, { message: "Поле обязательно" }),
     ATXCode: z.string().min(1, { message: "Поле обязательно" }),
+    companyName: z.string().min(1, { message: "Поле обязательно" }),
+    imageURL: z.string().min(1, { message: "Поле обязательно" }),
     quantity: z.coerce.number(),
     maxQuantity: z.coerce
       .number()
@@ -51,6 +55,9 @@ export const useCreateMedicinalProductForm = ({
         promise: () =>
           create({
             ...data,
+            name: data.name.toLowerCase(),
+            sellName: data.sellName.toLowerCase(),
+            imageURL: `https://${data.imageURL}`,
             quantity: Number(data.quantity),
             maxQuantity: Number(data.maxQuantity),
           }).unwrap(),
