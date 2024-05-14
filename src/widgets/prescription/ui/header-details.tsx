@@ -16,7 +16,6 @@ export const PrescriptionDetailsHeader = () => {
 
   const prescription = prescriptions[Number(id) - 1]
 
-  console.log({ prescription })
   return (
     <Flex
       align="center"

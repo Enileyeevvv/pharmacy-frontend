@@ -18,7 +18,6 @@ export const PatientPagination: FC<PatientPaginationProps> = ({
   const dispatch = useAppDispatch()
 
   const handleClick = (offset: number) => {
-    console.log({ offset })
     dispatch(changePatientPaginate({ offset }))
   }
 
