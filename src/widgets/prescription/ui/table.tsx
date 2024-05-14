@@ -1,68 +1,11 @@
-import {
-  Prescription,
-  PrescriptionStamp,
-  PrescriptionStatus,
-  PrescriptionType,
-} from "@/entities/prescription/types/prescription"
-import { PrescriptionTableRow } from "@/features/prescription/ui/table-row"
-import { AppTable } from "@/shared/modules/table/ui/app-table"
+"use client"
 
-const prescriptions: Prescription[] = [
-  {
-    id: 1,
-    stampID: PrescriptionStamp.N_107_1_у,
-    typeID: PrescriptionType.MULTIPLE_DOSE,
-    statusID: PrescriptionStatus.PENDING,
-    medicinalProductID: 1,
-    medicinalProductName: "АБИСИЛ",
-    medicinalProductQuantity: 30,
-    doctorID: 1,
-    doctorName: "enileyeevvv",
-    pharmacistID: 2,
-    pharmacistName: "mr. pharmacist",
-    patientID: 5,
-    patientName: "John",
-    createdAt: 1_715_601_600,
-    updatedAt: 1_715_601_600,
-    expiredAt: 1_715_601_600,
-  },
-  {
-    id: 2,
-    stampID: PrescriptionStamp.N_148_1_у_04,
-    typeID: PrescriptionType.SINGLE_DOSE,
-    statusID: PrescriptionStatus.SUCCEED,
-    medicinalProductID: 1,
-    medicinalProductName: "АБИСИЛ",
-    medicinalProductQuantity: 30,
-    doctorID: 1,
-    doctorName: "enileyeevvv",
-    pharmacistID: 2,
-    pharmacistName: "mr. pharmacist",
-    patientID: 5,
-    patientName: "John",
-    createdAt: 1_715_601_600,
-    updatedAt: 1_715_601_600,
-    expiredAt: 1_715_601_600,
-  },
-  {
-    id: 3,
-    stampID: PrescriptionStamp.N_148_1_у_88,
-    typeID: PrescriptionType.MULTIPLE_DOSE,
-    statusID: PrescriptionStatus.CANCELED,
-    medicinalProductID: 1,
-    medicinalProductName: "АБИСИЛ",
-    medicinalProductQuantity: 30,
-    doctorID: 1,
-    doctorName: "enileyeevvv",
-    pharmacistID: 2,
-    pharmacistName: "mr. pharmacist",
-    patientID: 5,
-    patientName: "John",
-    createdAt: 1_715_601_600,
-    updatedAt: 1_715_601_600,
-    expiredAt: 1_715_601_600,
-  },
-]
+import { PrescriptionTableRow } from "@/features/prescription/ui/table-row"
+import { useGetPrescriptionListQuery } from "@/entities/prescription/api/endpoints"
+import { AppTable } from "@/shared/modules/table/ui/app-table"
+import { prescriptions } from "@/entities/prescription/config/mock-data"
+import { PrescriptionPagination } from "@/features/prescription/ui/pagination"
+import { useAppSelector } from "@/shared/hooks/use-app-selector"
 
 const headers = [
   "ID",
@@ -77,11 +20,28 @@ const headers = [
   "Дата создания",
   "Дата изменения",
   "Истекает",
+  "",
 ]
 
 export const PrescriptionTable = () => {
+  const { pagination, variables } = useAppSelector(
+    (state) => state.prescriptionFilter
+  )
+  const { data } = useGetPrescriptionListQuery({
+    ...pagination,
+    ...variables,
+  })
+
   return (
-    <AppTable headers={headers}>
+    <AppTable
+      headers={headers}
+      pagination={
+        <PrescriptionPagination
+          offset={pagination.offset}
+          hasNext={data?.hasNext}
+        />
+      }
+    >
       {prescriptions.map((prescription) => (
         <PrescriptionTableRow
           key={prescription.id}
