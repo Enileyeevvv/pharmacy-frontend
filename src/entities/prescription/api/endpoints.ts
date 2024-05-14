@@ -1,7 +1,11 @@
 import { api } from "@/shared/api/api"
 import { QueryParam } from "@/shared/types/query-param"
 
-import { Prescription, PrescriptionStatus } from "../types/prescription"
+import {
+  Prescription,
+  PrescriptionStamp,
+  PrescriptionStatus,
+} from "../types/prescription"
 import { PrescriptionService } from "../config/api-service"
 
 export interface PrescriptionChangeHistory {
@@ -32,10 +36,21 @@ interface GetPrescriptionChangeHistoryReq {
   id: QueryParam
 }
 
-interface CretePrescriptionRes {}
-interface CretePrescriptionReq {
-  patientID: number
+interface CreateSinglePrescriptionRes {}
+interface CreateSinglePrescriptionReq {
   medicinalProductID: number
+  patientID: number
+  stampID: PrescriptionStamp
+  quantityForCourse: number
+}
+
+interface CreateMultiplePrescriptionRes {}
+interface CreateMultiplePrescriptionReq {
+  medicinalProductID: number
+  patientID: number
+  stampID: PrescriptionStamp
+  quantityInDose: number
+  doseCount: number
 }
 
 const prescriptionAPI = api.injectEndpoints({
@@ -70,13 +85,25 @@ const prescriptionAPI = api.injectEndpoints({
         method: "GET",
         params,
       }),
+      providesTags: ["prescription-list"],
     }),
-    createPrescription: builder.mutation<
-      CretePrescriptionRes,
-      CretePrescriptionReq
+    createSinglePrescription: builder.mutation<
+      CreateSinglePrescriptionRes,
+      CreateSinglePrescriptionReq
     >({
       query: (body) => ({
-        url: PrescriptionService.ROOT,
+        url: `${PrescriptionService.SINGLE.CREATE}`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["prescription-list"],
+    }),
+    createMultiplePrescription: builder.mutation<
+      CreateMultiplePrescriptionRes,
+      CreateMultiplePrescriptionReq
+    >({
+      query: (body) => ({
+        url: `${PrescriptionService.MULTIPLE.CREATE}`,
         method: "POST",
         body,
       }),
@@ -89,5 +116,7 @@ export const {
   useGetPrescriptionListQuery,
   useGetPrescriptionQuery,
   useGetPrescriptionChangeHistoryQuery,
-  useCreatePrescriptionMutation,
+
+  useCreateSinglePrescriptionMutation,
+  useCreateMultiplePrescriptionMutation,
 } = prescriptionAPI

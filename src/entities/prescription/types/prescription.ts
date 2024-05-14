@@ -1,6 +1,3 @@
-import { MedicinalProduct } from "@/entities/medicinal-product/types/medicinal-product"
-import { Patient } from "@/entities/patient/types/patient"
-import { User } from "@/entities/user/types/user"
 import { Unixtime } from "@/shared/types/unixtime"
 
 export enum PrescriptionStatus {
@@ -19,18 +16,6 @@ export enum PrescriptionStamp {
   N_148_1_у_88 = 2,
   N_148_1_у_04 = 3,
 }
-
-// export interface Prescription {
-//   id: number
-//   stampID: PrescriptionStamp
-//   typeID: PrescriptionType
-//   statusID: PrescriptionStatus
-//   doctor: User
-//   patient: Patient
-//   medicinalProduct: MedicinalProduct
-//   createdAt: number
-//   updatedAt: number
-// }
 
 export interface Prescription {
   id: number

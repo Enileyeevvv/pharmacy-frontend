@@ -41,6 +41,22 @@ export const patients: Patient[] = [
     createdAt: 1_715_601_600,
     updatedAt: 1_715_601_600,
   },
+  {
+    id: 6,
+    name: "Islam Enileev",
+    email: "example@mail.ru",
+    birthday: 552096000,
+    createdAt: 1_715_601_600,
+    updatedAt: 1_715_601_600,
+  },
+  {
+    id: 7,
+    name: "John Enileev",
+    email: "example@mail.ru",
+    birthday: 652147200,
+    createdAt: 1_715_601_600,
+    updatedAt: 1_715_601_600,
+  },
 ]
 
 export const patient = patients[0]

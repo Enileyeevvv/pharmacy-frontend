@@ -1,7 +1,9 @@
 "use client"
 
+import { Flex } from "@mantine/core"
+
+import { PrescriptionButtonGroup } from "@/widgets/prescription/ui/button-group"
 import { PrescriptionTable } from "@/widgets/prescription/ui/table"
-import { Flex, Grid } from "@mantine/core"
 
 export const PrescriptionPage = () => {
   return (
@@ -9,6 +11,7 @@ export const PrescriptionPage = () => {
       gap={16}
       direction="column"
     >
+      <PrescriptionButtonGroup />
       <PrescriptionTable />
     </Flex>
   )

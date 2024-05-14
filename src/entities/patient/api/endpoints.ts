@@ -26,7 +26,7 @@ const patientAPI = api.injectEndpoints({
         method: "GET",
         params,
       }),
-      providesTags: ["prescription-list"],
+      providesTags: ["patient-list"],
     }),
     getPatient: builder.query<GetPatientRes, GetPatientReq>({
       query: ({ id, ...params }) => ({
@@ -34,7 +34,7 @@ const patientAPI = api.injectEndpoints({
         method: "GET",
         params,
       }),
-      providesTags: ["prescription-list"],
+      providesTags: ["patient-list"],
     }),
   }),
 })

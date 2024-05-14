@@ -10,6 +10,10 @@ export const api = createApi({
   baseQuery,
   refetchOnFocus: false,
   refetchOnReconnect: true,
-  tagTypes: ["prescription-list", "medicinal-product-list"],
+  tagTypes: [
+    "patient-list",
+    "prescription-list",
+    "medicinal-product-list",
+  ],
   endpoints: () => ({}),
 })

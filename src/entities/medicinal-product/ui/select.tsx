@@ -2,12 +2,13 @@ import { Select } from "@mantine/core"
 import { useMemo, useState } from "react"
 import { useGetMedicinalProductListQuery } from "../api/endpoints"
 
+const pagination = {
+  limit: 100,
+  offset: 1,
+}
+
 export const MedicinalProductSelect = ({ ...props }) => {
-  const [name, setName] = useState("")
-  const { data } = useGetMedicinalProductListQuery({
-    limit: 100,
-    offset: 1,
-  })
+  const { data } = useGetMedicinalProductListQuery(pagination)
 
   const madicinalProductList = useMemo(() => {
     let result: { label: string; value: string }[] = []
@@ -30,9 +31,6 @@ export const MedicinalProductSelect = ({ ...props }) => {
       label="Лекарство"
       placeholder="Введите название"
       data={madicinalProductList}
-      searchable
-      searchValue={name}
-      onSearchChange={() => setName}
       {...props}
     />
   )
