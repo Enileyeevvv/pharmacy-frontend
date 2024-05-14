@@ -14,7 +14,7 @@ export const ShowPrescriptionDetailsButton: FC<
   return (
     <ActionIcon
       component={Link}
-      href={`${URLs.PRESCRIPTION}/${id}`}
+      href={`${URLs.PRESCRIPTION}/${id}/details`}
       variant="subtle"
     >
       <IconGripVertical />

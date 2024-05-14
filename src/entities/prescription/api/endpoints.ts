@@ -1,4 +1,5 @@
 import { api } from "@/shared/api/api"
+import { QueryParam } from "@/shared/types/query-param"
 
 import { Prescription } from "../types/prescription"
 import { PrescriptionService } from "../config/api-service"
@@ -7,13 +8,16 @@ interface IGetPrescriptionListRes {
   hasNext: boolean
   data: Prescription[]
 }
-interface IGetPrescriptionListReq {}
+interface IGetPrescriptionListReq {
+  limit: number
+  offset: number
+}
 
 interface IGetPrescriptionRes {
   data: Prescription
 }
 interface IGetPrescriptionReq {
-  id: number
+  id: QueryParam
 }
 
 interface ICretePrescriptionRes {}
@@ -39,8 +43,8 @@ const prescriptionAPI = api.injectEndpoints({
       IGetPrescriptionRes,
       IGetPrescriptionReq
     >({
-      query: (params) => ({
-        url: `${PrescriptionService.ROOT}/${params.id}`,
+      query: ({ id, ...params }) => ({
+        url: `${PrescriptionService.ROOT}/${id}`,
         method: "GET",
         params,
       }),

@@ -1,4 +1,5 @@
 import { DetailLayout } from "@/widgets/layout/ui/details-layout"
+import { PrescriptionDetailsAside } from "@/widgets/prescription/ui/aside-details"
 import { PrescriptionDetailsHeader } from "@/widgets/prescription/ui/header-details"
 
 export const PrescriptionDetailsPage = () => {
@@ -6,7 +7,7 @@ export const PrescriptionDetailsPage = () => {
     <DetailLayout
       header={<PrescriptionDetailsHeader />}
       main={<>main</>}
-      aside={<>aside</>}
+      aside={<PrescriptionDetailsAside />}
     />
   )
 }

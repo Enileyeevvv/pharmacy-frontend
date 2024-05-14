@@ -13,7 +13,7 @@ interface DetailLayoutProps {
 const maxCols = 12
 
 export const DetailLayout: FC<DetailLayoutProps> = ({
-  aspectRatio = 9 / 16,
+  aspectRatio = 3 / 4,
   header,
   main,
   aside,
@@ -35,14 +35,7 @@ export const DetailLayout: FC<DetailLayoutProps> = ({
 
       <Grid.Col span={mainSize}>{main}</Grid.Col>
       <Grid.Col span={asideSize}>
-        <Flex>
-          <Divider
-            h={100}
-            mr={8}
-            orientation="vertical"
-          />
-          {aside}
-        </Flex>
+        <Flex>{aside}</Flex>
       </Grid.Col>
     </Grid>
   )
