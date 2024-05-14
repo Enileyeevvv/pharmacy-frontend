@@ -4,7 +4,9 @@ import { Button, ButtonProps } from "@mantine/core"
 import { openContextModal } from "@mantine/modals"
 import { FC } from "react"
 
-interface CreatePrescriptionButtonProps extends ButtonProps {}
+interface CreatePrescriptionButtonProps extends ButtonProps {
+  patientID?: number
+}
 
 export const CreatePrescriptionButton: FC<
   CreatePrescriptionButtonProps
