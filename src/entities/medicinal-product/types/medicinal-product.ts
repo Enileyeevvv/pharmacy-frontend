@@ -1,12 +1,3 @@
-import { Base64 } from "@/shared/types/b64"
-
-interface MedicinalProductCompany {
-  id: number
-  medicinalProductID: number
-  name: string
-  image: Base64
-}
-
 export interface MedicinalProduct {
   id: number
   name: string

@@ -11,6 +11,7 @@ import { Form } from "@/shared/ui/form"
 import { ThousandInput } from "@/shared/ui/thousand-input"
 
 import { useCreateMedicinalProductForm } from "../hooks/use-create-form"
+import { PharmaceuticalGroupSelect } from "@/entities/medicinal-product/ui/select-pharmaceutical-group"
 
 interface CreateMedicinalProductFormProps {
   onSuccess?: () => void
@@ -34,6 +35,11 @@ export const CreateMedicinalProductForm: FC<
         label="Торговое название"
         placeholder="Введите торговое название"
         {...getInputProps("sellName")}
+      />
+      <PharmaceuticalGroupSelect
+        label="Фармакологическая группа"
+        placeholder="Выберите фармакологическую группу"
+        {...getInputProps("pharmaceuticalGroupID")}
       />
       <Textarea
         label="Описание"

@@ -7,6 +7,7 @@ import { mutationHandlerWithNotification } from "@/shared/utils/mutation-handler
 const initialValues = {
   name: "",
   description: "",
+  pharmaceuticalGroupID: "",
   sellName: "",
   ATXCode: "",
   quantity: "",
@@ -55,6 +56,7 @@ export const useCreateMedicinalProductForm = ({
         promise: () =>
           create({
             ...data,
+            pharmaceuticalGroupID: Number(data.pharmaceuticalGroupID),
             name: data.name.toLowerCase(),
             sellName: data.sellName.toLowerCase(),
             imageURL: `https://${data.imageURL}`,
