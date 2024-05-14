@@ -1,16 +1,16 @@
-import { patient } from "@/entities/patient/config/mock-data"
-import { useCreateSinglePrescriptionMutation } from "@/entities/prescription/api/endpoints"
-import { URLs } from "@/shared/config/urls"
-import { mutationHandlerWithNotification } from "@/shared/utils/mutation-handler-with-notification"
 import { useForm, zodResolver } from "@mantine/form"
 import { useCallback } from "react"
 import { z } from "zod"
+
+import { useCreateMultiplePrescriptionMutation } from "@/entities/prescription/api/endpoints"
+import { mutationHandlerWithNotification } from "@/shared/utils/mutation-handler-with-notification"
 
 const initialValues = {
   medicinalProductID: "",
   patientID: "",
   stampID: "",
-  quantityForCourse: "",
+  quantityInDose: "",
+  doseCount: "",
 }
 
 const signInScheme = z.object({
@@ -23,20 +23,23 @@ const signInScheme = z.object({
   stampID: z.string().min(1, {
     message: "Обязательное поле",
   }),
-  quantityForCourse: z.string().min(1, {
+  quantityInDose: z.string().min(1, {
+    message: "Обязательное поле",
+  }),
+  doseCount: z.string().min(1, {
     message: "Обязательное поле",
   }),
 })
 
 const validate = zodResolver(signInScheme)
 
-export const useCreateSinglePrescriptionForm = () => {
+export const useCreateMultiplePrescriptionForm = () => {
   const { values, getInputProps, onSubmit, reset, ...form } = useForm({
     initialValues,
     validate,
   })
 
-  const [create, mutation] = useCreateSinglePrescriptionMutation()
+  const [create, mutation] = useCreateMultiplePrescriptionMutation()
 
   const handleSubmit = useCallback(
     async (data: typeof values) => {
@@ -48,7 +51,8 @@ export const useCreateSinglePrescriptionForm = () => {
               medicinalProductID: Number(data.medicinalProductID),
               patientID: Number(data.patientID),
               stampID: Number(data.stampID),
-              quantityForCourse: Number(data.quantityForCourse),
+              quantityInDose: Number(data.quantityInDose),
+              doseCount: Number(data.doseCount),
             }).unwrap(),
         })
         reset()

@@ -16,7 +16,7 @@ export const CreateSinglePrescriptionForm = () => {
     <Form onSubmit={onSubmit(handleSubmit)}>
       <PatientSelect
         label="Пациент"
-        placeholder="Выберите пацеинта"
+        placeholder="Выберите пациента"
         {...getInputProps("patientID")}
       />
       <MedicinalProductSelect
@@ -39,7 +39,7 @@ export const CreateSinglePrescriptionForm = () => {
         type="submit"
         loading={isLoading}
       >
-        Войти
+        Создать
       </Button>
     </Form>
   )
