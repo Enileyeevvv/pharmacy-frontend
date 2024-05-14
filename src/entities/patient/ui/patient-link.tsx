@@ -13,7 +13,7 @@ export const PatientLink: FC<PatientLinkProps> = ({ id, name }) => {
     <Button
       variant="subtle"
       component={Link}
-      href={`${URLs.PATIENT}/${id}`}
+      href={`${URLs.PATIENT}/${id}/details`}
     >
       {name}
     </Button>
