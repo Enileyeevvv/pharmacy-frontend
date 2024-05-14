@@ -15,5 +15,7 @@ export const PrescriptionService = {
   ROOT: root,
   SINGLE,
   MULTIPLE,
+  SUBMIT: `${root}/submit`,
+  CANCEL: `${root}/cancel`,
   HISTORY: `${root}/history`,
 }

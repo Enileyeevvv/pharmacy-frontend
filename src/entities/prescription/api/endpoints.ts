@@ -53,6 +53,16 @@ interface CreateMultiplePrescriptionReq {
   doseCount: number
 }
 
+interface SubmitPrescriptionRes {}
+interface SubmitPrescriptionReq {
+  id: number
+}
+
+interface CancelPrescriptionRes {}
+interface CancelPrescriptionReq {
+  id: number
+}
+
 const prescriptionAPI = api.injectEndpoints({
   endpoints: (builder) => ({
     getPrescriptionList: builder.query<
@@ -109,6 +119,28 @@ const prescriptionAPI = api.injectEndpoints({
       }),
       invalidatesTags: ["prescription-list"],
     }),
+    submitPrescription: builder.mutation<
+      SubmitPrescriptionRes,
+      SubmitPrescriptionReq
+    >({
+      query: (body) => ({
+        url: PrescriptionService.ROOT,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["prescription-list"],
+    }),
+    cancelPrescription: builder.mutation<
+      CancelPrescriptionRes,
+      CancelPrescriptionReq
+    >({
+      query: (body) => ({
+        url: PrescriptionService.ROOT,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["prescription-list"],
+    }),
   }),
 })
 
@@ -119,4 +151,7 @@ export const {
 
   useCreateSinglePrescriptionMutation,
   useCreateMultiplePrescriptionMutation,
+
+  useSubmitPrescriptionMutation,
+  useCancelPrescriptionMutation,
 } = prescriptionAPI
