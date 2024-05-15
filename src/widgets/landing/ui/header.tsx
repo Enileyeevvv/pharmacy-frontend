@@ -4,15 +4,13 @@ import { Affix, Flex } from "@mantine/core"
 
 export const LandingHeader = () => {
   return (
-    <Affix
-      top={16}
-      left={0}
-    >
-      <LandingWrapper>
-        <Flex justify="center">
-          <Logo />
-        </Flex>
-      </LandingWrapper>
-    </Affix>
+    <LandingWrapper>
+      <Flex
+        py={16}
+        justify="center"
+      >
+        <Logo />
+      </Flex>
+    </LandingWrapper>
   )
 }
