@@ -9,12 +9,9 @@ import { useGetUserInfoQuery } from "@/entities/user/api/endpoints"
 import { useGetPatientQuery } from "@/entities/patient/api/endpoints"
 import { GoBackButton } from "@/shared/ui/go-back-button"
 
-const userName = "John"
-
 export const PatientDetailsHeader = () => {
   const { id } = useParams()
   const { data: user } = useGetUserInfoQuery()
-
   const { data, isLoading } = useGetPatientQuery({ id: id as string })
 
   return (
@@ -28,7 +25,11 @@ export const PatientDetailsHeader = () => {
       >
         <GoBackButton />
 
-        {isLoading ? <Skeleton /> : <Title>{`${id}. ${userName}`}</Title>}
+        {isLoading ? (
+          <Skeleton />
+        ) : (
+          <Title>{`${id}. ${data?.data.name}`}</Title>
+        )}
       </Flex>
       <Flex>
         {user?.typeID === UserType.DOCTOR && (

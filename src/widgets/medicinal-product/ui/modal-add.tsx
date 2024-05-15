@@ -5,5 +5,9 @@ export const AddMedicinalProductModal = ({ id }: ContextModalProps) => {
   const handleSuccess = () => {
     closeModal(id)
   }
-  return <AddMedicinalProductForm onSuccess={handleSuccess} />
+  return (
+    <>
+      <AddMedicinalProductForm onSuccess={handleSuccess} />
+    </>
+  )
 }

@@ -30,7 +30,7 @@ export const MedicinalProductList: FC = () => {
       >
         {data?.data.map((product) => (
           <MedicinalProductCard
-            key={product.id}
+            key={`${product.id}-${product.companyID}`}
             product={product}
           />
         ))}

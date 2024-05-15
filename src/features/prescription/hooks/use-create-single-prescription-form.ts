@@ -1,10 +1,9 @@
-import { patient } from "@/entities/patient/config/mock-data"
-import { useCreateSinglePrescriptionMutation } from "@/entities/prescription/api/endpoints"
-import { URLs } from "@/shared/config/urls"
-import { mutationHandlerWithNotification } from "@/shared/utils/mutation-handler-with-notification"
-import { useForm, zodResolver } from "@mantine/form"
 import { useCallback } from "react"
+import { useForm, zodResolver } from "@mantine/form"
 import { z } from "zod"
+
+import { useCreateSinglePrescriptionMutation } from "@/entities/prescription/api/endpoints"
+import { mutationHandlerWithNotification } from "@/shared/utils/mutation-handler-with-notification"
 
 const initialValues = {
   medicinalProductID: "",

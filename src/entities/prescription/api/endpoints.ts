@@ -17,8 +17,10 @@ interface GetPrescriptionListRes {
   data: Prescription[]
 }
 interface GetPrescriptionListReq {
-  limit: number
-  offset: number
+  limit: QueryParam
+  offset: QueryParam
+  patientID?: QueryParam
+  patientName?: QueryParam
 }
 
 interface GetPrescriptionRes {

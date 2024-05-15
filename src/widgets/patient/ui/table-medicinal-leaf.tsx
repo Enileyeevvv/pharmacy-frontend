@@ -1,7 +1,8 @@
 import { MedicinalLeafTableRow } from "@/features/patient/ui/medicinal-leaf-table-row"
-import { useGetPatientMedicinalLeafQuery } from "@/entities/patient/api/endpoints"
 import { prescriptions } from "@/entities/prescription/config/mock-data"
 import { AppTable } from "@/shared/modules/table/ui/app-table"
+import { useGetPrescriptionListQuery } from "@/entities/prescription/api/endpoints"
+import { useParams } from "next/navigation"
 
 const headers = [
   "ID",
@@ -24,7 +25,11 @@ const pagination = {
 }
 
 export const MedicinalLeafTable = () => {
-  const {} = useGetPatientMedicinalLeafQuery(pagination)
+  const { id } = useParams()
+  const { data } = useGetPrescriptionListQuery({
+    ...pagination,
+    patientID: Number(id),
+  })
 
   return (
     <AppTable headers={headers}>

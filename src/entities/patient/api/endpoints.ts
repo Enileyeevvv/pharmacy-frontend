@@ -14,18 +14,11 @@ interface GetPatientListReq {
   offset: number
 }
 
-interface GetPatientRes extends Patient {}
+interface GetPatientRes {
+  data: Patient
+}
 interface GetPatientReq {
   id: QueryParam
-}
-
-interface GetPatientMedicinalLeafRes {
-  hasNext: boolean
-  data: Prescription[]
-}
-interface GetPatientMedicinalLeafReq {
-  limit: number
-  offset: number
 }
 
 const patientAPI = api.injectEndpoints({
@@ -38,17 +31,6 @@ const patientAPI = api.injectEndpoints({
       }),
       providesTags: ["patient-list"],
     }),
-    getPatientMedicinalLeaf: builder.query<
-      GetPatientMedicinalLeafRes,
-      GetPatientMedicinalLeafReq
-    >({
-      query: (params) => ({
-        url: PatientService.ROOT,
-        method: "GET",
-        params,
-      }),
-      providesTags: ["prescription-list", "patient-list"],
-    }),
     getPatient: builder.query<GetPatientRes, GetPatientReq>({
       query: ({ id, ...params }) => ({
         url: `${PatientService.ROOT}/${id}`,
@@ -60,8 +42,4 @@ const patientAPI = api.injectEndpoints({
   }),
 })
 
-export const {
-  useGetPatientListQuery,
-  useGetPatientMedicinalLeafQuery,
-  useGetPatientQuery,
-} = patientAPI
+export const { useGetPatientListQuery, useGetPatientQuery } = patientAPI

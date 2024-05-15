@@ -13,8 +13,8 @@ export enum PrescriptionType {
 
 export enum PrescriptionStamp {
   N_107_1_у = 1,
-  N_148_1_у_88 = 2,
-  N_148_1_у_04 = 3,
+  N_148_1_у_04 = 2,
+  N_148_1_у_88 = 3,
 }
 
 export interface Prescription {

@@ -3,7 +3,6 @@
 import { PatientPagination } from "@/features/patient/ui/pagination"
 import { PatientTableRow } from "@/features/patient/ui/table-row"
 import { useGetPatientListQuery } from "@/entities/patient/api/endpoints"
-import { patients } from "@/entities/patient/config/mock-data"
 import { AppTable } from "@/shared/modules/table/ui/app-table"
 import { useAppSelector } from "@/shared/hooks/use-app-selector"
 
@@ -36,7 +35,7 @@ export const PatientTable = () => {
         />
       }
     >
-      {patients.map((patient) => (
+      {data?.data.map((patient) => (
         <PatientTableRow
           key={patient.id}
           {...patient}
