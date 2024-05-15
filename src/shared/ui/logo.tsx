@@ -8,7 +8,7 @@ export const Logo = () => {
         priority
         src="/images/logo.webp"
         alt="logo"
-        width={128}
+        width={100}
         height={32}
       />
     </Center>

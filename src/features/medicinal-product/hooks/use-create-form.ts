@@ -20,6 +20,9 @@ const createScheme = z
   .object({
     name: z.string().min(1, { message: "Поле обязательно" }),
     description: z.string().min(1, { message: "Поле обязательно" }),
+    pharmaceuticalGroupID: z
+      .string()
+      .min(1, { message: "Поле обязательно" }),
     sellName: z.string().min(1, { message: "Поле обязательно" }),
     ATXCode: z.string().min(1, { message: "Поле обязательно" }),
     companyName: z.string().min(1, { message: "Поле обязательно" }),

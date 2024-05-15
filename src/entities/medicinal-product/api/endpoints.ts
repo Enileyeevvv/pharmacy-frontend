@@ -22,6 +22,7 @@ interface GetMedicinalProductReq {
 interface CreateMedicinalProductRes {}
 interface CreateMedicinalProductReq {
   name: string
+  pharmaceuticalGroupID: number
   sellName: string
   ATXCode: string
   description: string
