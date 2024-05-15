@@ -12,7 +12,11 @@ export const api = createApi({
   refetchOnReconnect: true,
   tagTypes: [
     "patient-list",
+
+    "prescription",
     "prescription-list",
+    "prescription-history-list",
+
     "medicinal-product-list",
   ],
   endpoints: () => ({}),

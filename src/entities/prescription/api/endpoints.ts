@@ -36,6 +36,8 @@ interface GetPrescriptionChangeHistoryRes {
 }
 interface GetPrescriptionChangeHistoryReq {
   id: QueryParam
+  limit: QueryParam
+  offset: QueryParam
 }
 
 interface CreateSinglePrescriptionRes {}
@@ -85,7 +87,7 @@ const prescriptionAPI = api.injectEndpoints({
           method: "GET",
           params,
         }),
-        providesTags: ["prescription-list"],
+        providesTags: ["prescription"],
       }
     ),
     getPrescriptionChangeHistory: builder.query<
@@ -97,7 +99,7 @@ const prescriptionAPI = api.injectEndpoints({
         method: "GET",
         params,
       }),
-      providesTags: ["prescription-list"],
+      providesTags: ["prescription-history-list"],
     }),
     createSinglePrescription: builder.mutation<
       CreateSinglePrescriptionRes,
@@ -126,22 +128,30 @@ const prescriptionAPI = api.injectEndpoints({
       SubmitPrescriptionReq
     >({
       query: (body) => ({
-        url: PrescriptionService.ROOT,
+        url: PrescriptionService.SUBMIT,
         method: "POST",
         body,
       }),
-      invalidatesTags: ["prescription-list"],
+      invalidatesTags: [
+        "prescription-list",
+        "prescription-history-list",
+        "prescription",
+      ],
     }),
     cancelPrescription: builder.mutation<
       CancelPrescriptionRes,
       CancelPrescriptionReq
     >({
       query: (body) => ({
-        url: PrescriptionService.ROOT,
+        url: PrescriptionService.CANCEL,
         method: "POST",
         body,
       }),
-      invalidatesTags: ["prescription-list"],
+      invalidatesTags: [
+        "prescription-list",
+        "prescription-history-list",
+        "prescription",
+      ],
     }),
   }),
 })

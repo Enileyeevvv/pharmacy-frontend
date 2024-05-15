@@ -1,16 +1,16 @@
 const root = "/prescription"
 
-const singleRoot = "/single"
+const singleRoot = `${root}/single`
+const multipleRoot = `${root}/multiple`
 
 const SINGLE = {
-  CREATE: `${root}${singleRoot}/create`,
+  CREATE: `${singleRoot}/create`,
 }
-
-const multipleRoot = "/multiple"
 
 const MULTIPLE = {
-  CREATE: `${root}${multipleRoot}/create`,
+  CREATE: `${multipleRoot}/create`,
 }
+
 export const PrescriptionService = {
   ROOT: root,
   SINGLE,
