@@ -9,7 +9,8 @@ const initialValues = {
   medicinalProductID: "",
   patientID: "",
   stampID: "",
-  quantityForCourse: "",
+  quantityInDose: "",
+  doseCount: "",
 }
 
 const signInScheme = z.object({
@@ -22,16 +23,25 @@ const signInScheme = z.object({
   stampID: z.string().min(1, {
     message: "Обязательное поле",
   }),
-  quantityForCourse: z.string().min(1, {
+  quantityInDose: z.string().min(1, {
+    message: "Обязательное поле",
+  }),
+  doseCount: z.string().min(1, {
     message: "Обязательное поле",
   }),
 })
 
 const validate = zodResolver(signInScheme)
 
-export const useCreateSinglePrescriptionForm = () => {
+interface useCreateSinglePrescriptionFormParams {
+  defaultValues?: Partial<typeof initialValues>
+}
+
+export const useCreateSinglePrescriptionForm = ({
+  defaultValues,
+}: useCreateSinglePrescriptionFormParams) => {
   const { values, getInputProps, onSubmit, reset, ...form } = useForm({
-    initialValues,
+    initialValues: { ...initialValues, ...defaultValues },
     validate,
   })
 
@@ -47,7 +57,8 @@ export const useCreateSinglePrescriptionForm = () => {
               medicinalProductID: Number(data.medicinalProductID),
               patientID: Number(data.patientID),
               stampID: Number(data.stampID),
-              quantityForCourse: Number(data.quantityForCourse),
+              quantityInDose: Number(data.quantityInDose),
+              doseCount: Number(data.doseCount),
             }).unwrap(),
         })
         reset()

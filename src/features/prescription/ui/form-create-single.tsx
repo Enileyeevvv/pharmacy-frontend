@@ -7,10 +7,21 @@ import { useCreateSinglePrescriptionForm } from "../hooks/use-create-single-pres
 import { PrescriptionStampSelect } from "./select-stamp"
 import { PatientSelect } from "@/features/patient/ui/select"
 import { MedicinalProductSelect } from "@/entities/medicinal-product/ui/select"
+import { FC } from "react"
 
-export const CreateSinglePrescriptionForm = () => {
+interface CreateSinglePrescriptionFormProps {
+  patientID?: number
+}
+
+export const CreateSinglePrescriptionForm: FC<
+  CreateSinglePrescriptionFormProps
+> = ({ patientID }) => {
   const { onSubmit, handleSubmit, getInputProps, isLoading } =
-    useCreateSinglePrescriptionForm()
+    useCreateSinglePrescriptionForm({
+      defaultValues: {
+        patientID: String(patientID) ?? "",
+      },
+    })
 
   return (
     <Form onSubmit={onSubmit(handleSubmit)}>
@@ -30,9 +41,14 @@ export const CreateSinglePrescriptionForm = () => {
         {...getInputProps("stampID")}
       />
       <ThousandInput
-        label="Количество"
-        placeholder="Введите торговое название"
-        {...getInputProps("quantityForCourse")}
+        label="Количество в дозе"
+        placeholder="Введите количество в дозе"
+        {...getInputProps("quantityInDose")}
+      />
+      <ThousandInput
+        label="Количество доз"
+        placeholder="Введите количество доз"
+        {...getInputProps("doseCount")}
       />
       <Button
         mt={24}

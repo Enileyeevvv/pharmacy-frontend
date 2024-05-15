@@ -42,7 +42,7 @@ export const LandingBanner = () => {
 
             <Image
               radius="md"
-              w={{ base: "90%", xs: 448, md: 512 }}
+              w={{ base: "90%", xs: 448, md: 512, lg: 768 }}
               alt="banner"
               src="/images/banner.jpeg"
             />

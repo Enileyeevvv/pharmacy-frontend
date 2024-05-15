@@ -44,7 +44,11 @@ export const LandingAboutUs = () => {
             </Title>
           </Flex>
 
-          <Accordion w={{ base: "90%", xs: 448, md: 512 }}>
+          <Accordion
+            defaultValue="Скорость работы"
+            variant="separated"
+            w={{ base: "90%", xs: 448, md: 512 }}
+          >
             {groceries.map((item) => (
               <Accordion.Item
                 key={item.value}

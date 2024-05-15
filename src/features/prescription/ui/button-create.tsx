@@ -10,12 +10,12 @@ interface CreatePrescriptionButtonProps extends ButtonProps {
 
 export const CreatePrescriptionButton: FC<
   CreatePrescriptionButtonProps
-> = ({ ...props }) => {
+> = ({ patientID, ...props }) => {
   const handleClick = () => {
     openContextModal({
       modal: "createPrescriptionModal",
       title: "Создание рецепта",
-      innerProps: {},
+      innerProps: { patientID },
     })
   }
 

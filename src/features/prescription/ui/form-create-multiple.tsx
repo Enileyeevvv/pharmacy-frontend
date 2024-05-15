@@ -8,10 +8,21 @@ import { Form } from "@/shared/ui/form"
 import { useCreateMultiplePrescriptionForm } from "../hooks/use-create-multiple-prescription-form copy"
 
 import { PrescriptionStampSelect } from "./select-stamp"
+import { FC } from "react"
 
-export const CreateMultiplePrescriptionForm = () => {
+interface CreateMultiplePrescriptionFormProps {
+  patientID?: number
+}
+
+export const CreateMultiplePrescriptionForm: FC<
+  CreateMultiplePrescriptionFormProps
+> = ({ patientID }) => {
   const { onSubmit, handleSubmit, getInputProps, isLoading } =
-    useCreateMultiplePrescriptionForm()
+    useCreateMultiplePrescriptionForm({
+      defaultValues: {
+        patientID: String(patientID) ?? "",
+      },
+    })
 
   return (
     <Form onSubmit={onSubmit(handleSubmit)}>
@@ -31,14 +42,9 @@ export const CreateMultiplePrescriptionForm = () => {
         {...getInputProps("stampID")}
       />
       <ThousandInput
-        label="Количество в дозе"
-        placeholder="Введите количество в дозе"
-        {...getInputProps("quantityInDose")}
-      />{" "}
-      <ThousandInput
-        label="Количество доз"
-        placeholder="Введите количество доз"
-        {...getInputProps("doseCount")}
+        label="Количество"
+        placeholder="Введите количество лекарства на весь период"
+        {...getInputProps("quantityForCourse")}
       />
       <Button
         mt={24}

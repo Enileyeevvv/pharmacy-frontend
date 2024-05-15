@@ -43,7 +43,8 @@ interface CreateSinglePrescriptionReq {
   medicinalProductID: number
   patientID: number
   stampID: PrescriptionStamp
-  quantityForCourse: number
+  quantityInDose: number
+  doseCount: number
 }
 
 interface CreateMultiplePrescriptionRes {}
@@ -51,8 +52,7 @@ interface CreateMultiplePrescriptionReq {
   medicinalProductID: number
   patientID: number
   stampID: PrescriptionStamp
-  quantityInDose: number
-  doseCount: number
+  quantityForCourse: number
 }
 
 interface SubmitPrescriptionRes {}
