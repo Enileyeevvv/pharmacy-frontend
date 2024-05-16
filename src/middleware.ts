@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { URLs } from "./shared/config/urls"
 
-const authRotes = ["/sign_in", "/sign_up"]
+const authRotes = ["/sign_in", "/sign_up", "/landing"]
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone()
