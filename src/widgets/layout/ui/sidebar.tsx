@@ -7,14 +7,11 @@ import { Logo } from "@/shared/ui/logo"
 import { LinkType } from "@/shared/types/link"
 
 import { SidebarLink } from "./sidebar-link"
+import { isLinkActive } from "@/shared/utils/is-link-active"
 
 interface SidebarProps {
   links: LinkType[]
   bottomSide?: ReactElement
-}
-
-const isLinkActive = (pathname: string, href: string) => {
-  return pathname.includes(href) ? "" : "gray"
 }
 
 export const Sidebar: FC<SidebarProps> = ({ links, bottomSide }) => {

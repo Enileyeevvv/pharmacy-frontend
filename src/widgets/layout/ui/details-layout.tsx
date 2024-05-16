@@ -1,6 +1,9 @@
 "use client"
+
 import { FC, ReactNode, useMemo } from "react"
 import { Divider, Flex, Grid } from "@mantine/core"
+
+import { defineSizesByAspectRatio } from "../utils/define-sizes"
 
 interface DetailLayoutProps {
   aspectRatio?: number
@@ -18,11 +21,10 @@ export const DetailLayout: FC<DetailLayoutProps> = ({
   main,
   aside,
 }) => {
-  const { mainSize, asideSize } = useMemo(() => {
-    const mainSize = maxCols * aspectRatio
-    const asideSize = maxCols - mainSize
-    return { mainSize, asideSize }
-  }, [aspectRatio])
+  const { mainSize, asideSize } = useMemo(
+    () => defineSizesByAspectRatio(aspectRatio, maxCols),
+    [aspectRatio]
+  )
 
   return (
     <Grid gutter={8}>

@@ -4,8 +4,6 @@ export enum URLs {
 
   MAIN = "/medicinal_product",
 
-  PROFILE = "/profile",
-
   MEDICINAL_PRODUCT = "/medicinal_product",
   PATIENT = "/patient",
   PRESCRIPTION = "/prescription",
