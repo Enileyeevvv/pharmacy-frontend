@@ -9,7 +9,10 @@ const initialValues = {
   medicinalProductID: "",
   patientID: "",
   stampID: "",
-  quantityForCourse: "",
+  quantityInDose: "",
+  doseCount: "",
+
+  // quantityForCourse: "",
 }
 
 const signInScheme = z.object({
@@ -22,19 +25,28 @@ const signInScheme = z.object({
   stampID: z.string().min(1, {
     message: "Обязательное поле",
   }),
-  quantityForCourse: z.string().min(1, {
+  quantityInDose: z.string().min(1, {
     message: "Обязательное поле",
   }),
+  doseCount: z.string().min(1, {
+    message: "Обязательное поле",
+  }),
+
+  // quantityForCourse: z.string().min(1, {
+  //   message: "Обязательное поле",
+  // }),
 })
 
 const validate = zodResolver(signInScheme)
 
 interface useCreateMultiplePrescriptionFormParams {
   defaultValues?: Partial<typeof initialValues>
+  onSuccess?: () => void
 }
 
 export const useCreateMultiplePrescriptionForm = ({
   defaultValues,
+  onSuccess,
 }: useCreateMultiplePrescriptionFormParams) => {
   const { values, getInputProps, onSubmit, reset, ...form } = useForm({
     initialValues: { ...initialValues, ...defaultValues },
@@ -53,15 +65,19 @@ export const useCreateMultiplePrescriptionForm = ({
               medicinalProductID: Number(data.medicinalProductID),
               patientID: Number(data.patientID),
               stampID: Number(data.stampID),
-              quantityForCourse: Number(data.quantityForCourse),
+              quantityInDose: Number(data.quantityInDose),
+              doseCount: Number(data.doseCount),
+
+              // quantityForCourse: Number(data.quantityForCourse),
             }).unwrap(),
         })
         reset()
+        onSuccess?.()
       } catch (e) {
         console.log(e)
       }
     },
-    [create, reset]
+    [create, onSuccess, reset]
   )
 
   return {

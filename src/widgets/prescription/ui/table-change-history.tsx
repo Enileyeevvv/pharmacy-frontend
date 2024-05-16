@@ -3,7 +3,7 @@ import { AppTable } from "@/shared/modules/table/ui/app-table"
 import { useGetPrescriptionChangeHistoryQuery } from "@/entities/prescription/api/endpoints"
 import { useParams } from "next/navigation"
 
-const headers = ["Статус", "Время изменения"]
+const headers = ["Врач", "Фармацевт", "Статус", "Время изменения"]
 
 const pagination = {
   limit: 10,

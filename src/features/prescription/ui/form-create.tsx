@@ -1,3 +1,4 @@
+import { FC } from "react"
 import { Flex, SegmentedControl } from "@mantine/core"
 import { useForm } from "@mantine/form"
 
@@ -5,7 +6,6 @@ import { PrescriptionType } from "@/entities/prescription/types/prescription"
 
 import { CreateSinglePrescriptionForm } from "./form-create-single"
 import { CreateMultiplePrescriptionForm } from "./form-create-multiple"
-import { FC } from "react"
 
 const segments = [
   { label: "Однократная доза", value: "1" },
@@ -13,11 +13,13 @@ const segments = [
 ]
 
 interface CreatePrescriptionFormProps {
+  handleSuccess?: () => void
   patientID?: number
 }
 
 export const CreatePrescriptionForm: FC<CreatePrescriptionFormProps> = ({
   patientID,
+  handleSuccess,
 }) => {
   const { values, getInputProps } = useForm({
     initialValues: {
@@ -36,10 +38,16 @@ export const CreatePrescriptionForm: FC<CreatePrescriptionFormProps> = ({
         {...getInputProps("typeID")}
       />
       {Number(values.typeID) == PrescriptionType.SINGLE_DOSE && (
-        <CreateSinglePrescriptionForm patientID={patientID} />
+        <CreateSinglePrescriptionForm
+          handleSuccess={handleSuccess}
+          patientID={patientID}
+        />
       )}
       {Number(values.typeID) == PrescriptionType.MULTIPLE_DOSE && (
-        <CreateMultiplePrescriptionForm patientID={patientID} />
+        <CreateMultiplePrescriptionForm
+          handleSuccess={handleSuccess}
+          patientID={patientID}
+        />
       )}
     </Flex>
   )
