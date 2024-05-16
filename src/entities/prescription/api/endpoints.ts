@@ -1,5 +1,6 @@
 import { api } from "@/shared/api/api"
 import { QueryParam } from "@/shared/types/query-param"
+import { Nullable } from "@/shared/types/nullable"
 
 import {
   Prescription,
@@ -9,6 +10,10 @@ import {
 import { PrescriptionService } from "../config/api-service"
 
 export interface PrescriptionChangeHistory {
+  doctorID: number
+  doctorName: string
+  pharmacistID: Nullable<number>
+  pharmacistName: Nullable<string>
   statusID: PrescriptionStatus
   updatedAt: number
 }

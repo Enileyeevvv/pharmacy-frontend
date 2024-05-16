@@ -3,7 +3,6 @@
 import { PrescriptionTableRow } from "@/features/prescription/ui/table-row"
 import { useGetPrescriptionListQuery } from "@/entities/prescription/api/endpoints"
 import { AppTable } from "@/shared/modules/table/ui/app-table"
-import { prescriptions } from "@/entities/prescription/config/mock-data"
 import { PrescriptionPagination } from "@/features/prescription/ui/pagination"
 import { useAppSelector } from "@/shared/hooks/use-app-selector"
 
@@ -42,7 +41,7 @@ export const PrescriptionTable = () => {
         />
       }
     >
-      {prescriptions.map((prescription) => (
+      {data?.data.map((prescription) => (
         <PrescriptionTableRow
           key={prescription.id}
           {...prescription}

@@ -5,7 +5,6 @@ import { Flex, Title } from "@mantine/core"
 
 import { useGetPrescriptionQuery } from "@/entities/prescription/api/endpoints"
 import { GoBackButton } from "@/shared/ui/go-back-button"
-import { prescriptions } from "@/entities/prescription/config/mock-data"
 import { PrescriptionStampBadge } from "@/entities/prescription/ui/badge-prescription-stamp"
 import { PrescriptionStatusBadge } from "@/entities/prescription/ui/badge-prescription-status"
 import { PrescriptionTypeBadge } from "@/entities/prescription/ui/badge-prescription-type"
@@ -20,8 +19,6 @@ export const PrescriptionDetailsHeader = () => {
   const { data: user } = useGetUserInfoQuery()
   const { data } = useGetPrescriptionQuery({ id: id as string })
 
-  const prescription = prescriptions[Number(id) - 1]
-
   return (
     <Flex
       align="center"
@@ -34,19 +31,19 @@ export const PrescriptionDetailsHeader = () => {
         <GoBackButton />
 
         <Title order={2}>ID: {id}</Title>
-        <PrescriptionStatusBadge statusID={prescription.statusID} />
+        <PrescriptionStatusBadge statusID={data?.data.statusID} />
       </Flex>
       <Flex
         align="center"
         gap={16}
       >
-        <PrescriptionStampBadge stampID={prescription.stampID} />
-        <PrescriptionTypeBadge typeID={prescription.typeID} />
-        {prescription.statusID === PrescriptionStatus.PENDING &&
+        <PrescriptionStampBadge stampID={data?.data.stampID} />
+        <PrescriptionTypeBadge typeID={data?.data.typeID} />
+        {data?.data.statusID === PrescriptionStatus.PENDING &&
           user?.typeID === UserType.PHARMACIST && (
             <SubmitPrescriptionButton id={Number(id)} />
           )}
-        {prescription.statusID === PrescriptionStatus.PENDING &&
+        {data?.data.statusID === PrescriptionStatus.PENDING &&
           user?.typeID === UserType.PHARMACIST && (
             <CancelPrescriptionButton id={Number(id)} />
           )}

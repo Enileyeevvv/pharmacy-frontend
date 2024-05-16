@@ -1,5 +1,4 @@
 import { MedicinalLeafTableRow } from "@/features/patient/ui/medicinal-leaf-table-row"
-import { prescriptions } from "@/entities/prescription/config/mock-data"
 import { AppTable } from "@/shared/modules/table/ui/app-table"
 import { useGetPrescriptionListQuery } from "@/entities/prescription/api/endpoints"
 import { useParams } from "next/navigation"
@@ -33,7 +32,7 @@ export const MedicinalLeafTable = () => {
 
   return (
     <AppTable headers={headers}>
-      {prescriptions.map((prescription) => (
+      {data?.data.map((prescription) => (
         <MedicinalLeafTableRow
           key={prescription.id}
           {...prescription}

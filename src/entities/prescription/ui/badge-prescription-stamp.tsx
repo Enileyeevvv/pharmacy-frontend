@@ -3,7 +3,7 @@ import { FC, useMemo } from "react"
 import { PrescriptionStamp } from "../types/prescription"
 
 interface PrescriptionStampBadgeProps {
-  stampID: PrescriptionStamp
+  stampID?: PrescriptionStamp
 }
 
 export const PrescriptionStampBadge: FC<PrescriptionStampBadgeProps> = ({
@@ -21,6 +21,8 @@ export const PrescriptionStampBadge: FC<PrescriptionStampBadgeProps> = ({
         return ""
     }
   }, [stampID])
+
+  if (!stampID) return <></>
 
   return <Badge variant="outline">{stamp}</Badge>
 }

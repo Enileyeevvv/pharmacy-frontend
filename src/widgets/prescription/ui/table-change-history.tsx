@@ -1,5 +1,4 @@
 import { ChangeHistoryTableRow } from "@/features/prescription/ui/change-history-table-row"
-import { prescriptionChangeHistory } from "@/entities/prescription/config/mock-data"
 import { AppTable } from "@/shared/modules/table/ui/app-table"
 import { useGetPrescriptionChangeHistoryQuery } from "@/entities/prescription/api/endpoints"
 import { useParams } from "next/navigation"
@@ -20,7 +19,7 @@ export const PrescriptionChangeHistoryTable = () => {
 
   return (
     <AppTable headers={headers}>
-      {prescriptionChangeHistory.map((prescription) => (
+      {data?.data.map((prescription) => (
         <ChangeHistoryTableRow
           key={prescription.updatedAt}
           {...prescription}

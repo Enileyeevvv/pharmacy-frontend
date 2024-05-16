@@ -4,7 +4,7 @@ import { Badge } from "@mantine/core"
 import { PrescriptionStatus } from "../types/prescription"
 
 interface PrescriptionStatusBadgeProps {
-  statusID: PrescriptionStatus
+  statusID?: PrescriptionStatus
 }
 
 const colorByStatusID = (statusID: PrescriptionStatus) => {
@@ -35,6 +35,8 @@ export const PrescriptionStatusBadge: FC<PrescriptionStatusBadgeProps> = ({
         return ""
     }
   }, [statusID])
+
+  if (!statusID) return <></>
 
   return (
     <Badge

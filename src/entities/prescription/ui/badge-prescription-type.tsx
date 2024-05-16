@@ -3,7 +3,7 @@ import { FC, useMemo } from "react"
 import { PrescriptionStamp, PrescriptionType } from "../types/prescription"
 
 interface PrescriptionTypeBadgeProps {
-  typeID: PrescriptionType
+  typeID?: PrescriptionType
 }
 
 const colorByTypeID = (typeID: PrescriptionType) => {
@@ -30,6 +30,8 @@ export const PrescriptionTypeBadge: FC<PrescriptionTypeBadgeProps> = ({
         return ""
     }
   }, [typeID])
+
+  if (!typeID) return <></>
 
   return (
     <Badge
