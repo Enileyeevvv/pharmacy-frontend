@@ -8,6 +8,7 @@ const initialValues = {
   name: "",
   description: "",
   pharmaceuticalGroupID: "",
+  dosageFormID: "",
   sellName: "",
   ATXCode: "",
   quantity: "",
@@ -60,6 +61,7 @@ export const useCreateMedicinalProductForm = ({
           create({
             ...data,
             pharmaceuticalGroupID: Number(data.pharmaceuticalGroupID),
+            dosageFormID: Number(data.dosageFormID),
             name: data.name.toLowerCase(),
             sellName: data.sellName.toLowerCase(),
             imageURL: `https://${data.imageURL}`,

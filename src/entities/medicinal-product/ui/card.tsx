@@ -3,6 +3,7 @@ import { Card, Group, Text, Flex, Center } from "@mantine/core"
 
 import { MedicinalProduct } from "../types/medicinal-product"
 import { QuantityPercentBadge } from "./badge-quantity-percent"
+import { DosageFormBadge } from "./badge-dosage-form"
 
 interface MedicinalProductCardProps {
   product: MedicinalProduct
@@ -30,7 +31,7 @@ export const MedicinalProductCard: FC<MedicinalProductCardProps> = ({
             <img
               src={product.imageURL}
               height={160}
-              alt="Norway"
+              alt="product"
             />
           </Center>
         </Card.Section>
@@ -43,12 +44,15 @@ export const MedicinalProductCard: FC<MedicinalProductCardProps> = ({
           />
         </Group>
 
-        <Text
-          fz={14}
-          fw={400}
-        >
-          {`Код ATX: ${product.ATXCode}`}
-        </Text>
+        <Group justify="space-between">
+          <Text
+            fz={14}
+            fw={400}
+          >
+            {`Код ATX: ${product.ATXCode}`}
+          </Text>
+          <DosageFormBadge dosageFormID={product.dosageFormID} />
+        </Group>
 
         <Text
           fz={14}

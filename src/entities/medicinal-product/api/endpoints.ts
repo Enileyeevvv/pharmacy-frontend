@@ -2,6 +2,7 @@ import { api } from "@/shared/api/api"
 
 import { MedicinalProduct } from "../types/medicinal-product"
 import { MedicinalProductService } from "../config/api-service"
+import { DosageForm } from "../config/dosage-form"
 
 interface GetMedicinalProductListRes {
   hasNext: boolean
@@ -23,6 +24,7 @@ interface CreateMedicinalProductRes {}
 interface CreateMedicinalProductReq {
   name: string
   pharmaceuticalGroupID: number
+  dosageFormID: DosageForm
   sellName: string
   ATXCode: string
   description: string
@@ -117,6 +119,7 @@ const medicinalProductAPI = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["medicinal-product-list"],
     }),
   }),
 })

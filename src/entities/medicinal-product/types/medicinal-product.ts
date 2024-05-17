@@ -1,3 +1,5 @@
+import { DosageForm } from "../config/dosage-form"
+
 export interface MedicinalProduct {
   id: number
   name: string
@@ -7,6 +9,8 @@ export interface MedicinalProduct {
   description: string
   pharmaceuticalGroupID: number
   pharmaceuticalGroupName: string
+  dosageFormID: DosageForm
+  dosageFormName: string
   companyID: number
   companyName: string
   imageURL: string
