@@ -2,14 +2,14 @@ import { FC } from "react"
 import { ActionIcon, Flex } from "@mantine/core"
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react"
 
-type PrevNextPaginatePropsType = {
+interface PrevNextPaginateProps {
   offset: number
   hasNext?: boolean
   isLoading?: boolean
   callback: (offset: number) => void
 }
 
-export const PrevNextPaginate: FC<PrevNextPaginatePropsType> = ({
+export const PrevNextPaginate: FC<PrevNextPaginateProps> = ({
   offset,
   hasNext,
   isLoading,
